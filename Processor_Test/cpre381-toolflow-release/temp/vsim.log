@@ -1,0 +1,309 @@
+Reading pref.tcl
+
+# 2020.2
+
+# vsim -c tb_SimplifiedMIPSProcessor -do "modelsim_framework2.do" 
+# Start time: 15:12:25 on Oct 26,2020
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(0)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(0)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(1)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(1)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(2)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(2)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(3)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(3)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(4)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(4)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(5)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(5)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(6)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(6)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(7)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(7)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(8)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(8)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(9)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(9)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(10)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(10)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(11)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(11)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(12)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(12)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(13)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(13)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(14)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(14)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(15)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(15)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(16)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(16)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(17)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(17)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(18)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(18)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(19)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(19)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(20)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(20)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(21)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(21)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(22)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(22)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(23)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(23)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(24)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(24)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(25)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(25)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(26)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(26)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(27)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(27)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(28)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(28)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(29)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(29)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(30)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(30)
+# ** Warning: src/FA_struct.vhd(49): (vopt-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(31)
+# ** Warning: src/FA_struct.vhd(56): (vopt-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/AddFour/G1(31)
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=64.
+# //  ModelSim SE-64 2020.2 Apr 19 2020
+# //
+# //  Copyright 1991-2020 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_textio(body)
+# Loading std.env(body)
+# Loading work.tb_simplifiedmipsprocessor(mixed)#1
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading work.mips_processor(structure)#1
+# Loading work.mux21_structn(structure)#1
+# Loading work.barrelshifter(structural)#1
+# Loading work.onebitalu(dataflow)#1
+# Loading work.regfile(behavior)#1
+# Loading work.fa_struct(structure)#1
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(0) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(0) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(1) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(1) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(2) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(2) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(3) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(3) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(4) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(4) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(5) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(5) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(6) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(6) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(7) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(7) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(8) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(8) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(9) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(9) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(10) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(10) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(11) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(11) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(12) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(12) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(13) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(13) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(14) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(14) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(15) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(15) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(16) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(16) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(17) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(17) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(18) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(18) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(19) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(19) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(20) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(20) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(21) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(21) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(22) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(22) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(23) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(23) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(24) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(24) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(25) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(25) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(26) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(26) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(27) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(27) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(28) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(28) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(29) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(29) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(30) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(30) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR1 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(31) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-3473) Component instance "g_XOR2 : xorg2" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/G1(31) File: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/ModelSimWork/src/FA_struct.vhd
+# ** Warning: (vsim-8684) No drivers exist on out port /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/AddFour/Sum(31 downto 0), and its initial value is not used.
+# Therefore, simulation behavior may occur that is not in compliance with
+# the VHDL standard as the initial values come from the base signal /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/s_PCPlusFourOut(31 downto 0).
+# do modelsim_framework2.do
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/RegisterFile/g_mux32to1_2
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/RegisterFile/g_mux32to1_1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/DMem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IMem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5 ns  Iteration: 12  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/DMem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 40 ns  Iteration: 4  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IMem
+# End time: 15:12:35 on Oct 26,2020, Elapsed time: 0:00:10
+# Errors: 0, Warnings: 135
