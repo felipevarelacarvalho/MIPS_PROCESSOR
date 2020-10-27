@@ -1,5 +1,5 @@
 # vsim -c tb_SimplifiedMIPSProcessor -do "modelsim_framework2.do" 
-# Start time: 22:57:08 on Oct 26,2020
+# Start time: 15:26:45 on Oct 27,2020
 # ** Note: (vsim-3812) Design is being optimized...
 # //  ModelSim SE-64 2020.2 Apr 19 2020
 # //
@@ -5901,5 +5901,5 @@
 #    Time: 9994370 ns  Iteration: 5  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/RegisterFile/g_mux32to1_2
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 9994370 ns  Iteration: 13  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/DMem
-# End time: 22:57:32 on Oct 26,2020, Elapsed time: 0:00:24
+# End time: 15:27:11 on Oct 27,2020, Elapsed time: 0:00:26
 # Errors: 0, Warnings: 2936
