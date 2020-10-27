@@ -29,7 +29,7 @@ architecture behavior of regfile is
         m_out : out std_logic_vector(31 downto 0)); --32 bit output
     end component;
 
-    component nbitR is
+    component Register_Nbits is
         generic(N : integer :=32);
         port(i_CLK        : in std_logic;     -- Clock input
              i_RST        : in std_logic;     -- Reset input
@@ -52,7 +52,7 @@ architecture behavior of regfile is
             F_OUT => s_decoder5to32out
         );
 
-        g_reg0 : nbitR
+        g_reg0 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -62,7 +62,7 @@ architecture behavior of regfile is
             o_Q => reg_array(0)
         );
 
-        g_reg1 : nbitR
+        g_reg1 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -72,7 +72,7 @@ architecture behavior of regfile is
             o_Q => reg_array(1)
         );
 
-        g_reg2 : nbitR
+        g_reg2 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -82,7 +82,7 @@ architecture behavior of regfile is
             o_Q => reg_array(2)
         );
 
-        g_reg3 : nbitR
+        g_reg3 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -92,7 +92,7 @@ architecture behavior of regfile is
             o_Q => reg_array(3)
         );
 
-        g_reg4 : nbitR
+        g_reg4 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -102,7 +102,7 @@ architecture behavior of regfile is
             o_Q => reg_array(4)
         );
 
-        g_reg5 : nbitR
+        g_reg5 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -112,7 +112,7 @@ architecture behavior of regfile is
             o_Q => reg_array(5)
         );
 
-        g_reg6 : nbitR
+        g_reg6 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -122,7 +122,7 @@ architecture behavior of regfile is
             o_Q => reg_array(6)
         );
 
-        g_reg7 : nbitR
+        g_reg7 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -132,7 +132,7 @@ architecture behavior of regfile is
             o_Q => reg_array(7)
         );
 
-        g_reg8 : nbitR
+        g_reg8 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -142,7 +142,7 @@ architecture behavior of regfile is
             o_Q => reg_array(8)
         );
 
-        g_reg9 : nbitR
+        g_reg9 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -152,7 +152,7 @@ architecture behavior of regfile is
             o_Q => reg_array(9)
         );
 
-        g_reg10 : nbitR
+        g_reg10 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -162,7 +162,7 @@ architecture behavior of regfile is
             o_Q => reg_array(10)
         );
 
-        g_reg11 : nbitR
+        g_reg11 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -172,7 +172,7 @@ architecture behavior of regfile is
             o_Q => reg_array(11)
         );
 
-        g_reg12 : nbitR
+        g_reg12 : Register_Nbits
        -- generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -182,7 +182,7 @@ architecture behavior of regfile is
             o_Q => reg_array(12)
         );
 
-        g_reg13 : nbitR
+        g_reg13 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -192,7 +192,7 @@ architecture behavior of regfile is
             o_Q => reg_array(13)
         );
 
-        g_reg14 : nbitR
+        g_reg14 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -202,7 +202,7 @@ architecture behavior of regfile is
             o_Q => reg_array(14)
         );
 
-        g_reg15 : nbitR
+        g_reg15 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -212,7 +212,7 @@ architecture behavior of regfile is
             o_Q => reg_array(15)
         );
 
-        g_reg16 : nbitR
+        g_reg16 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -222,7 +222,7 @@ architecture behavior of regfile is
             o_Q => reg_array(16)
         );
 
-        g_reg17 : nbitR
+        g_reg17 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -232,7 +232,7 @@ architecture behavior of regfile is
             o_Q => reg_array(17)
         );
 
-        g_reg18 : nbitR
+        g_reg18 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -242,7 +242,7 @@ architecture behavior of regfile is
             o_Q => reg_array(18)
         );
 
-        g_reg19 : nbitR
+        g_reg19 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -252,7 +252,7 @@ architecture behavior of regfile is
             o_Q => reg_array(19)
         );
 
-        g_reg20 : nbitR
+        g_reg20 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -262,7 +262,7 @@ architecture behavior of regfile is
             o_Q => reg_array(20)
         );
 
-        g_reg21 : nbitR
+        g_reg21 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -272,7 +272,7 @@ architecture behavior of regfile is
             o_Q => reg_array(21)
         );
 
-        g_reg22 : nbitR
+        g_reg22 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -282,7 +282,7 @@ architecture behavior of regfile is
             o_Q => reg_array(22)
         );
 
-        g_reg23 : nbitR
+        g_reg23 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -292,7 +292,7 @@ architecture behavior of regfile is
             o_Q => reg_array(23)
         );
 
-        g_reg24 : nbitR
+        g_reg24 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -302,7 +302,7 @@ architecture behavior of regfile is
             o_Q => reg_array(24)
         );
 
-        g_reg25 : nbitR
+        g_reg25 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -312,7 +312,7 @@ architecture behavior of regfile is
             o_Q => reg_array(25)
         );
 
-        g_reg26 : nbitR
+        g_reg26 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -322,7 +322,7 @@ architecture behavior of regfile is
             o_Q => reg_array(26)
         );
 
-        g_reg27 : nbitR
+        g_reg27 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -332,7 +332,7 @@ architecture behavior of regfile is
             o_Q => reg_array(27)
         );
 
-        g_reg28 : nbitR
+        g_reg28 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -342,7 +342,7 @@ architecture behavior of regfile is
             o_Q => reg_array(28)
         );
 
-        g_reg29 : nbitR
+        g_reg29 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -352,7 +352,7 @@ architecture behavior of regfile is
             o_Q => reg_array(29)
         );
 
-        g_reg30 : nbitR
+        g_reg30 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,
@@ -362,7 +362,7 @@ architecture behavior of regfile is
             o_Q => reg_array(30)
         );
 
-        g_reg31 : nbitR
+        g_reg31 : Register_Nbits
         --generic map(N => 32);
         port map(
             i_CLK => clk,

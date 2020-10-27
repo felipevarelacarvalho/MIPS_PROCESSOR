@@ -282,6 +282,8 @@ begin
     reg2_out => v0
   );
 
+  s_DMemData <= s_RegFileReadAddress2;
+
   AddFour : FA_struct
   generic map(N => N)
   port map(

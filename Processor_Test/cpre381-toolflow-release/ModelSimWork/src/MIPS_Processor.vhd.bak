@@ -240,7 +240,7 @@ begin
     A => s_Inst(20 downto 16),
     B => s_Inst(15 downto 11),
     S => s_RegDst,
-    Q => s_RegWrAddrnbitR
+    Q => s_RegWrAddr
   );
 
   PC : Register_Nbits
@@ -281,6 +281,8 @@ begin
     reg_out_dataB => s_RegFileReadAddress2,
     reg2_out => v0
   );
+
+  s_DMemData <= s_RegFileReadAddress2;
 
   AddFour : FA_struct
   generic map(N => N)
