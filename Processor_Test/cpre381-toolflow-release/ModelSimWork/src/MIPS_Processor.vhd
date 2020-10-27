@@ -121,7 +121,7 @@ architecture structure of MIPS_Processor is
       );    
     end component;
 
-    component RegFile is
+    component regfile is
       port(
         clk, rst, reg_write_en: in std_logic;
         reg_write_dest: in std_logic_vector(4 downto 0); -- 5 bit destination (Input for 5:32 decoder)
@@ -268,7 +268,7 @@ begin
     MemRead => s_MemReadEnable --Not being used in Proj B, here for future reference
   ); 
 
-  RegisterFile : RegFile
+  RegisterFile : regfile
   port map(
     clk => iCLK,
     rst => iRST,
