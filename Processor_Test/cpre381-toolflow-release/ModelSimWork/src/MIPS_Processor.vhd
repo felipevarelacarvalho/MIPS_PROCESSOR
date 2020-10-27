@@ -199,12 +199,13 @@ begin
   MemToReg_Mux: MUX21_structN
   generic map(N => N)
   port map(
-    A => s_ALUout,
-    B => s_DMemOut,
+    A => s_DMemOut,
+    B => s_ALUout,
     S => s_MemToReg,
     Q => s_RegWrData
   );
 
+	
   ALU : MIPS_ALU
   port map(
     i_A => s_RegFileReadAddress1,
@@ -221,8 +222,8 @@ begin
   ALUSrc_Mux : MUX21_structN
   generic map(N => N)
   port map(
-    A => s_RegFileReadAddress2,
-    B => s_SignExtendOut,
+    A => s_SignExtendOut,
+    B => s_RegFileReadAddress2,
     S => s_AluSrc,
     Q => s_ALUSrcMuxOut
   );
@@ -237,8 +238,8 @@ begin
   RegDst_Mux: MUX21_structN
   generic map(N => 5)
   port map(
-    A => s_Inst(20 downto 16),
-    B => s_Inst(15 downto 11),
+    A => s_Inst(15 downto 11),
+    B => s_Inst(20 downto 16),
     S => s_RegDst,
     Q => s_RegWrAddr
   );

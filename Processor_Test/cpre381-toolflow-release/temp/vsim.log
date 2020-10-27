@@ -3,7 +3,7 @@ Reading pref.tcl
 # 2020.2
 
 # vsim -c tb_SimplifiedMIPSProcessor -do "modelsim_framework2.do" 
-# Start time: 15:26:45 on Oct 27,2020
+# Start time: 16:05:54 on Oct 27,2020
 # ** Note: (vsim-3812) Design is being optimized...
 # //  ModelSim SE-64 2020.2 Apr 19 2020
 # //
@@ -41,8 +41,6 @@ Reading pref.tcl
 #    Time: 0 ns  Iteration: 0  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/DMem
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ns  Iteration: 0  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IMem
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 5 ns  Iteration: 12  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/DMem
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 130 ns  Iteration: 5  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/RegisterFile/g_mux32to1_1
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
@@ -5905,5 +5903,5 @@ Reading pref.tcl
 #    Time: 9994370 ns  Iteration: 5  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/RegisterFile/g_mux32to1_2
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 9994370 ns  Iteration: 13  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/DMem
-# End time: 15:27:11 on Oct 27,2020, Elapsed time: 0:00:26
-# Errors: 0, Warnings: 2936
+# End time: 16:06:18 on Oct 27,2020, Elapsed time: 0:00:24
+# Errors: 0, Warnings: 2935
