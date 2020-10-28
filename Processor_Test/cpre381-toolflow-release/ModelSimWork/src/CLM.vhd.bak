@@ -59,7 +59,6 @@ begin
 	
 	s_DMemWr <= '1' when funct = "101011" else
 				'0';
-
 	with opcode select s_RegWr <= 
 			'1' when "001000",
 			'0' when others;
