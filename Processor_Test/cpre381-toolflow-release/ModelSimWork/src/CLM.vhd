@@ -54,7 +54,7 @@ begin
 			"1100" when funct = "000100" else
 			"1101" when funct = "000110";
 
-	MemtoReg <= '1' when opcode = "001111" else
+	MemtoReg <= '0' when opcode = "001111" else --LUI INSTRUCTION
 				'1' when opcode = "100011" else
 				'0';
 	

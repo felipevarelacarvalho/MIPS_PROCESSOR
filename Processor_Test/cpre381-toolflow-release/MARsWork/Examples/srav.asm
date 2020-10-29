@@ -9,9 +9,9 @@ addi $2, $0, 4
 addi $3, $0, 7
 addi $4, $0, 15
 
-sra $5, $2, $1
-sra $6, $3, $1
-sra $7, $4, $1
+srav $5, $2, $1
+srav $6, $3, $1
+srav $7, $4, $1
 
 
 addi  $2,  $0,  10      # Place "10" in $v0 to signal an "exit" or "halt"

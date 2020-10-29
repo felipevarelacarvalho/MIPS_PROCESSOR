@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity MIPS_ALU is
     port(
-		shamt           : in std_logic_vector(31 downto 0); --Added as a way to keep track of the shifter amount
+		shamt           : in std_logic_vector(31 downto 0);  --Added as a way to keep track of the shifter amount
         i_A             : in  std_logic_vector(31 downto 0); --Input A
         i_B             : in  std_logic_vector(31 downto 0); --Input B, input that controls immediate value
         select_ALU      : in  std_logic_vector( 3 downto 0); --Select line ALU
@@ -64,6 +64,7 @@ architecture behaviour of MIPS_ALU is
         s_i_A_Barrel <= s_ALU_out when select_ALU = "1000" else --Special mux for "lui"
                         i_B;
 
+		
         g_BarrelShifter0: BarrelShifter
         port map(
             data_in => s_i_A_Barrel,
