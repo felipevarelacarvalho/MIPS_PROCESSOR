@@ -201,7 +201,7 @@ begin
   generic map(N => N)
   port map(
     A => s_DMemOut,
-    B => s_ALUout,
+    B => s_DMemAddr,
     S => s_MemToReg,
     Q => s_RegWrData
   );
@@ -214,12 +214,12 @@ begin
     i_B => s_ALUSrcMuxOut,
     select_ALU => s_ALUOp,
     Zero => s_ALUZeroOut,
-    data_out => s_ALUout,
+    data_out => s_DMemAddr,
     c_out =>s_ALUCarryOut
   );
   
-  s_DMemAddr <= s_ALUout;
-  oALUout <= s_ALUout; --Assign ALU output to oALUout for syntheis purposes
+  --s_DMemAddr <= s_ALUout;
+  oALUout <= s_DMemAddr; --Assign ALU output to oALUout for syntheis purposes
 
   ALUSrc_Mux : MUX21_structN
   generic map(N => N)

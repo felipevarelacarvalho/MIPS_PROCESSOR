@@ -12,7 +12,7 @@ addi $4,  $0,  0		# add 0 to register 4
 andi  $1,  $1,  0		# and a positive number($2) and 0 together
 andi  $10, $10, 0		# and a positive number($10) and a negative number together
 andi  $1,  $1,  1		# and a positive number($1) and a positive number together
-andi  $2,  $2,  8		# and a negative number($2) and a negative number together
+andi  $2,  $2,  -8		# and a negative number($2) and a negative number together
 andi  $2,  $2,  0		# and a negative number($2) and zero together
 
 

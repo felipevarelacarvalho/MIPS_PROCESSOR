@@ -12,7 +12,7 @@ addi $4,  $0,  0		# add 0 to register 4
 xori  $1,  $1,  0		# xor a positive number($2) and 0($4) together
 xori  $10, $10, 0		# xor a positive number($10) and a negative number($4) together
 xori  $1,  $1,  1		# xor a positive number($1) and a positive number($10) together
-xori  $2,  $2,  8		# xor a negative number($2) and a negative number($3) together
+xori  $2,  $2,  -8		# xor a negative number($2) and a negative number($3) together
 xori  $2,  $2,  0		# xor a negative number($2) and zero($4) together
 
 
