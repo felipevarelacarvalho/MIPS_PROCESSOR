@@ -77,6 +77,7 @@ architecture structure of MIPS_Processor is
 
   component MIPS_ALU is
     port(
+	  shamt           : in std_logic_vector(31 downto 0); --Added as a way to keep track of the shifter amount
       i_A             : in  std_logic_vector(31 downto 0); --Input A
       i_B             : in  std_logic_vector(31 downto 0); --Input B, input that controls immediate value
       select_ALU      : in  std_logic_vector( 3 downto 0); --Select line ALU
@@ -208,6 +209,7 @@ begin
 	
   ALU : MIPS_ALU
   port map(
+	shamt => s_Inst, --Added as a way to keep track of shamt
     i_A => s_RegFileReadAddress1,
     i_B => s_ALUSrcMuxOut,
     select_ALU => s_ALUOp,

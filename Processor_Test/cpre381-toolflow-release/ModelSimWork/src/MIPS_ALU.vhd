@@ -4,6 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity MIPS_ALU is
     port(
+		shamt           : in std_logic_vector(31 downto 0); --Added as a way to keep track of the shifter amount
         i_A             : in  std_logic_vector(31 downto 0); --Input A
         i_B             : in  std_logic_vector(31 downto 0); --Input B, input that controls immediate value
         select_ALU      : in  std_logic_vector( 3 downto 0); --Select line ALU
@@ -49,7 +50,8 @@ architecture behaviour of MIPS_ALU is
     ----------------------------------------------------------------------
     begin
         --Multiplexers to determine shifts and operations
-        s_shamt <= i_B(4 downto 0) when select_ALU = "0110" or select_ALU = "1001" or select_ALU = "1010" or select_ALU = "1011" or select_ALU = "1100" or select_ALU = "1101" else --Shift last four bits of iB
+        s_shamt <= shamt(10 downto 6) when select_ALU = "1010" or select_ALU = "1001" or select_ALU = "1011" else --Shift four bits given R inst srl, sll, sra
+				i_A(4 downto 0) when select_ALU = "0110" or select_ALU ="1100" or select_ALU = "1101" else --Shift last four bits of iB when instruction is srav, sllv, srlv
                 "10000" when select_ALU = "1000" else --Special case where shift is 16 for "lui" instruction
                 "00000"; --No shift
 
@@ -60,7 +62,7 @@ architecture behaviour of MIPS_ALU is
                       '0';
                
         s_i_A_Barrel <= s_ALU_out when select_ALU = "1000" else --Special mux for "lui"
-                        i_A;
+                        i_B;
 
         g_BarrelShifter0: BarrelShifter
         port map(

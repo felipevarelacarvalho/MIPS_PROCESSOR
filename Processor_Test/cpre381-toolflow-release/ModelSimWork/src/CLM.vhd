@@ -23,7 +23,8 @@ architecture dataflow of CLM is
 
 begin
 
-	ALUSrc <= '0' when opcode = "000000" else
+	ALUSrc <= '0' when opcode = "000000" and funct = "000000" else 
+			  '0' when opcode = "000000" else
 			  '1';
 			  
 	ALUControl <=   "0000" when opcode = "001001" else
@@ -102,7 +103,7 @@ begin
 	
 	--TAKEAWAYS: PROBLEMS IN SIGN EXTENDER(ASK TA), ALU(ASK TA), MAYBE SHIFTER?
 	
-	RegDst <=   '0' when opcode = "001001" else
+	RegDst <= 	'0' when opcode = "001001" else
 				'0' when opcode = "001000" else
 				'0' when opcode = "001010" else
 				'0' when opcode = "001011" else
