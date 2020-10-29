@@ -58,12 +58,12 @@ begin
 				'1' when opcode = "100011" else
 				'0';
 	
-	s_DMemWr <= '1' when funct = "101011" else
+	s_DMemWr <= '1' when funct = "101011" else --sw
 				'0';
 
 	with opcode select s_RegWr <= 
 			'1' when "001000", --addi
-			'1' when "000000", --add,addu,srl,sw,lw,slt,sltu,and,or,xor,srav,nor,sll,sra,sllv,srlv
+			'1' when "000000", --add,addu,srl,slt,sltu,and,or,xor,srav,nor,sll,sra,sllv,srlv
 			'1' when "001001", --addiu
 			'1' when "001010", --slti 
 			'1' when "001011", --sltiu 
@@ -72,9 +72,10 @@ begin
 			'1' when "001110", --xori 
 			'1' when "001111", --lui
 			'1' when "100011", --lw 
+ 
 			'0' when others;
 	--PROGRESS SO FAR:
-	--	srl: SAME PROBLEM AS SLL, LOOKS LIKE IT SHIFTS TOO MUCH
+	--	srl: WORKS
 	--	add: WORKS
 	--	addiu: WORKS
 	--	addu: WORKS
@@ -92,14 +93,14 @@ begin
 	--	ori: WORKS
 	--	xor: WORKS
 	--	xori: WORKS
-	--	srav: PROBLEM, SHIFTER MIGHT BE IN HEX? Maybe swap with Moe's shifter
+	--	srav: WORKS
 	--	nor: WORKS
-	--	lui: PROBLEM, NEED MUX CONNECTED TO 0 IN ALU? IF NOT PROBLEM IS IN ALU
+	--	lui: WORKS
 	--	lw: DOESN'T WORK, ASK TA!
-	--	sll: PROBLEM, SHIFTING TOO MUCH TO THE LEFT
-	--	sra: PROBLEM, SHIFTER MIGHT BE IN HEX? Maybe swap with Moe's shifter
-	--	sllv: PROBLEM, SHIFTING TOO MUCH TO THE LEFT
-	--	srlv: SAME AS SLL, LOOKS LIKE IT SHIFTS TOO MUCH
+	--	sll: WORKS
+	--	sra: WORKS
+	--	sllv: WORKS
+	--	srlv: WORKS
 	
 	--TAKEAWAYS: PROBLEMS IN SIGN EXTENDER(ASK TA), ALU(ASK TA), MAYBE SHIFTER?
 	

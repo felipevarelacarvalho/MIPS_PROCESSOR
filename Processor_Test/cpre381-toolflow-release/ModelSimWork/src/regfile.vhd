@@ -43,14 +43,19 @@ architecture behavior of regfile is
     signal reg_array : reg_list;
     --Output signals
     signal s_decoder5to32out : std_logic_vector(31 downto 0);
-
+	signal fout_Signal : std_logic_vector(31 downto 0);
 
     begin
+	
+		s_decoder5to32out <= fout_Signal when reg_write_en = '1' else "00000000000000000000000000000000";	
+			
         g_Decoder5to32_1 :  Decoder_5_32
         port map(
             D_IN => reg_write_dest,
-            F_OUT => s_decoder5to32out
+            F_OUT => fout_Signal
         );
+		
+		
 
         g_reg0 : Register_Nbits
         --generic map(N => 32);
