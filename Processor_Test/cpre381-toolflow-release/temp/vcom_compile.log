@@ -1,5 +1,5 @@
 Model Technology ModelSim SE-64 vcom 2020.2 Compiler 2020.04 Apr 19 2020
-Start time: 20:54:05 on Oct 28,2020
+Start time: 21:21:11 on Oct 28,2020
 vcom -2008 -work ModelSimWork/work ModelSimWork/src/*.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -68,5 +68,5 @@ vcom -2008 -work ModelSimWork/work ModelSimWork/src/*.vhd
 -- Compiling architecture dataflow of xorg2
 -- Compiling entity zero
 -- Compiling architecture behavior of zero
-End time: 20:54:06 on Oct 28,2020, Elapsed time: 0:00:01
+End time: 21:21:11 on Oct 28,2020, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
