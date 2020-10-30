@@ -5,7 +5,7 @@
 .text
 
 addi $1, $0, 1		#add positive number to $1
-addi $2, $0, -2		#add negative number to $2
+addi $2, $0, 2		#add negative number to $2
 addi $3, $0, 0		#add zero to $3
 
 sltu $4, $1, $2		#check if 1 < 2, should return 1

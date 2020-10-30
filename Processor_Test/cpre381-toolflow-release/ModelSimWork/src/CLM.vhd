@@ -84,8 +84,8 @@ begin
 	--	subu: WORKS
 	--	slt: WORKS
 	--	slti: WORKS
-	--	sltiu: DOESN'T WORK, PROBLEM IS IN SIGN EXTENDER? ASK TA
-	--	sltu: DOESN'T WORK, PROBLEM IS IN SIGN EXTENDER? ASK TA
+	--	sltiu: WORKS
+	--	sltu: WORKS
 	--	and: WORKS
 	--	andi: WORKS
 	--	or: WORKS
@@ -100,8 +100,7 @@ begin
 	--	sra: WORKS
 	--	sllv: WORKS
 	--	srlv: WORKS
-	
-	--TAKEAWAYS: PROBLEMS IN SIGN EXTENDER(ASK TA), ALU(ASK TA), MAYBE SHIFTER?
+
 	
 	RegDst <= 	'0' when opcode = "001001" else
 				'0' when opcode = "001000" else
