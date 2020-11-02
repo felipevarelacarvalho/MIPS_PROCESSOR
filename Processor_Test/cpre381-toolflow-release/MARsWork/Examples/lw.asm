@@ -14,9 +14,9 @@ addi  $1, $0, 1			# add a positive number for testing
 addi  $2, $0, -1		# add a negative number for testing
 addi  $3, $0, 0			# add a zero for testing
 
-sw	  $1,  4($7)		# load a positive number into the register
-sw	  $2,  8($7)		# load a negative number into the register
-sw	  $3,  12($7)		# load a zero into a register
+sw	  $1,  4($7)		# store a positive number into the register
+sw	  $2,  8($7)		# store a negative number into the register
+sw	  $3,  12($7)		# store a zero into a register
 
 lw	  $4,  4($7)		# load a positive number into the register
 lw	  $5,  8($7)		# load a negative number into the register
