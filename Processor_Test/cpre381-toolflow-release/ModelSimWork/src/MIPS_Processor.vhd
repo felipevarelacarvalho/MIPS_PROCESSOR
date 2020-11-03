@@ -142,6 +142,25 @@ architecture structure of MIPS_Processor is
           Sum : out std_logic_vector (N-1 downto 0));
     end component;
 
+    --Components added for Phase II
+    component BarrelShifter is
+      port (
+        data_in     : in  STD_LOGIC_VECTOR (31 downto 0);
+        isSigned : in  STD_LOGIC; -- 0 characterizes an logical shift, 1 characterizes an arithmetic shift
+        left_shift  : in  STD_LOGIC; --0 shifts left, 1 shifts right
+        shamt   : in  STD_LOGIC_VECTOR (4 downto 0);           
+        data_out    : out STD_LOGIC_VECTOR (31 downto 0));   
+    end component;
+
+    component BranchLogic is
+      port(
+        BranchOnEqual_in    : in std_logic;
+        BranchOnNotEqual_in : in std_logic;
+        ComparingBit        : in std_logic;
+        BranchSignal_out    : out std_logic);
+    end component;
+
+
   -------------------------------------------------------------------------------------------------------
   --Additional Signals
   -------------------------------------------------------------------------------------------------------
@@ -165,9 +184,25 @@ architecture structure of MIPS_Processor is
   signal s_ALUSrc:              std_logic;
   signal s_RegDst:              std_logic;
   signal s_Jump :               std_logic;
-  signal s_branch :             std_logic;
-  signal s_MemReadEnable :      std_logic;  --Not being used in Proj B, here for future reference
-    
+  signal s_BranchOnEqual :      std_logic; --Added for BEQ
+  signal s_MemReadEnable :      std_logic; --Not being used in Proj B, here for future reference
+  signal s_jr :                 std_logic; --Added for jr
+  signal s_BranchOnNotEqual :   std_logic; --Added for BNE
+  signal s_jal :                std_logic; --Added for jal
+
+  --New signals for Phase II
+  signal s_ShiftLeftTwoInstructionOut : std_logic_vector(31 downto 0);
+  signal s_BranchMuxOut : std_logic_vector(31 downto 0);
+  signal s_JumpMuxOut   :std_logic_vector(31 downto 0);
+  signal s_JrMuxOut : std_logic_vector(31 downto 0);
+  signal s_ShiftLeftTwoSignExtended : std_logic_vector(31 downto 0);
+  signal s_groundout : std_logic; --Assinged to signals that are not usefull
+  signal s_BranchAdderOut : std_logic_vector(31 downto 0);
+  signal s_BranchLogicOut : std_logic;
+
+
+  signal s_temp1 : std_logic_vector(31 downto 0);
+  signal s_temp2: std_logic_vector(31 downto 0);
 begin
 
   -- TODO: This is required to be your final input to your instruction memory. This provides a feasible method to externally load the memory module which means that the synthesis tool must assume it knows nothing about the values stored in the instruction memory. If this is not included, much, if not all of the design is optimized out because the synthesis tool will believe the memory to be all zeros.
@@ -203,7 +238,7 @@ begin
     A => s_DMemOut,
     B => s_DMemAddr,
     S => s_MemToReg,
-    Q => s_RegWrData
+    Q => s_MemToRegMuxOut --Changed it to fit phase II, changed from s_RegWrData
   );
 
 	
@@ -252,11 +287,11 @@ begin
     i_clk => iCLK,
     i_RST => iRST,
     i_WE => '1',
-    i_D => s_PCPlusFourOut,
+    i_D => s_JrMuxOut,  --Changed to support s_jr, previously s_PCPlusFourOut
     o_Q => s_NextInstAddr
   );
 
-  Control : CLM
+  Control : CLM --TODO update CLM
   port map(
 		opcode	=> s_Inst(31 downto 26),
 		funct	=> s_Inst(5 downto 0),
@@ -267,7 +302,7 @@ begin
 		s_RegWr	=> s_RegWr,
 		RegDst	=> s_RegDst,
 		Jump	=> s_Jump,
-		Branch	=> s_branch,
+		Branch	=> s_BranchOnEqual,
     MemRead => s_MemReadEnable --Not being used in Proj B, here for future reference
   ); 
 
@@ -295,5 +330,83 @@ begin
     B => x"00000004",
     Cout => s_DummyCout,
     Sum => s_PCPlusFourOut
+  );
+
+  --Phase II starts here
+  --Beginning of Jump Logic
+  s_temp1 <= b"00000011111111111111111111111111" and s_Inst;
+  ShiftLeftTwo_Instruction : BarrelShifter
+  port map(
+    data_in =>  s_temp1,
+    isSigned => '0',
+    left_shift => '1',
+    shamt => b"00010",
+    data_out =>  s_ShiftLeftTwoInstructionOut
+  );
+
+  s_temp2 <= ( s_PCPlusFourOut and x"10000000" ) or s_ShiftLeftTwoInstructionOut
+  Jump_Mux : MUX21_structN 
+  generic map(N => N)
+  port map(
+    A =>  s_temp2, --A represents 1 in the MUX
+    B =>  s_BranchMuxOut, --B represents 0 in the Mux
+    S =>  s_Jump,
+    Q =>  s_JumpMuxOut
+  );
+  
+  Jr_Mux : MUX21_structN
+  generic map(N => N)
+  port map(
+    A => s_RegFileReadAddress1,
+    B => s_JumpMuxOut,
+    S => s_jr,
+    Q => s_JrMuxOut
+  );
+
+  --Beginning of Branch logic
+  ShiftLeftTwo_SignExtend : BarrelShifter
+  port map(
+    data_in =>  s_SignExtendOut,
+    isSigned => '0',
+    left_shift => '1',
+    shamt => b"00010",
+    data_out =>  s_ShiftLeftTwoSignExtended
+  );
+
+  BranchAdder : FA_struct
+  generic map(N => N)
+  port map(
+    Cin => '0',
+    A => s_PCPlusFourOut,
+    B => s_ShiftLeftTwoSignExtended,
+    Cout => s_groundout,
+    Sum => s_BranchAdderOut
+  );
+
+  BranchLogicBlock : BranchLogic
+  port map(
+    BranchOnEqual_in    => s_BranchOnEqual,
+    BranchOnNotEqual_in => s_BranchOnNotEqual,
+    ComparingBit        => s_ALUZeroOut,
+    BranchSignal_out    => s_BranchLogicOut
+  );
+
+  Branch_Mux : MUX21_structN
+  generic map(N => N)
+  port map(
+    A => s_BranchAdderOut,
+    B => s_PCPlusFourOut,
+    S => s_BranchLogicOut,
+    Q => s_BranchMuxOut
+  );
+
+  --Beginning of jal logic
+  Jal_Mux : MUX21_structN
+  generic map(N => N)
+  port map(
+    A => s_PCPlusFourOut,
+    B => s_MemToRegMuxOut,
+    S => s_jal,
+    Q => s_RegWrData
   );
 end structure;

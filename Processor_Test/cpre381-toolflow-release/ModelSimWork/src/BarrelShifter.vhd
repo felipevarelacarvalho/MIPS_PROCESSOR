@@ -6,7 +6,7 @@ entity BarrelShifter is
     port (
       data_in     : in  STD_LOGIC_VECTOR (31 downto 0);
       isSigned : in  STD_LOGIC; -- 0 characterizes an logical shift, 1 characterizes an arithmetic shift
-      left_shift  : in  STD_LOGIC; --0 shifts left, 1 shifts right
+      left_shift  : in  STD_LOGIC; --1 shifts left, 0 shifts right
       shamt   : in  STD_LOGIC_VECTOR (4 downto 0);           
       data_out    : out STD_LOGIC_VECTOR (31 downto 0));
 end BarrelShifter;
