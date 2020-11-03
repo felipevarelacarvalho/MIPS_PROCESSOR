@@ -258,16 +258,16 @@ begin
 
   Control : CLM
   port map(
-		opcode	=> s_Inst(31 downto 26),
-		funct	=> s_Inst(5 downto 0),
-		ALUSrc => s_AluSrc,
-		ALUControl => s_ALUOp,
-		MemtoReg=> s_MemToReg,
-		s_DMemWr=> s_DMemWr,
-		s_RegWr	=> s_RegWr,
-		RegDst	=> s_RegDst,
-		Jump	=> s_Jump,
-		Branch	=> s_branch,
+		opcode		=> s_Inst(31 downto 26),
+		funct		=> s_Inst(5 downto 0),
+		ALUSrc 		=> s_AluSrc,
+		ALUControl 	=> s_ALUOp,
+		MemtoReg	=> s_MemToReg,
+		s_DMemWr	=> s_DMemWr,
+		s_RegWr		=> s_RegWr,
+		RegDst		=> s_RegDst,
+		Jump		=> s_Jump,
+		BranchEqual	=> s_branch,
     MemRead => s_MemReadEnable --Not being used in Proj B, here for future reference
   ); 
 

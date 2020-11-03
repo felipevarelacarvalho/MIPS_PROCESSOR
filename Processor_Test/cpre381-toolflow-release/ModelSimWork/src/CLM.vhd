@@ -13,7 +13,10 @@ entity CLM is
 		s_RegWr		: out std_logic;
 		RegDst		: out std_logic;
 		Jump		: out std_logic;
-		Branch		: out std_logic;
+		JumpReg		: out std_logic;
+		JumpNLink	: out std_logic;
+		BranchEqual	: out std_logic;
+		BranchNotEqual: out std_logic;
 		MemRead		: out std_logic);
 end CLM;
 
@@ -24,6 +27,8 @@ architecture dataflow of CLM is
 begin
 
 	ALUSrc <= '0' when opcode = "000000" else
+			  '0' when opcode = "000100" else --beq, this may not be needed
+			  '0' when opcode = "000101" else --bne[up], this may not be needed
 			  '1';
 			  
 	ALUControl <=   "0000" when opcode = "001001" else
@@ -36,6 +41,10 @@ begin
 			"1000" when opcode = "001111" else
 			"0000" when opcode = "100011" else 
 			"0000" when opcode = "101011" else --sw
+			"0001" when opcode = "000100" else --beq
+			"0001" when opcode = "000101" else --bne[up]
+			"xxxx" when opcode = "000010" else --j
+			"yyyy" when opcode = "000011" else --jal
 			"1010" when funct = "000010" else
 			"0000" when funct = "100000" else
 			"0000" when funct = "100001" else
@@ -51,11 +60,12 @@ begin
 			"1001" when funct = "000000" else
 			"1011" when funct = "000011" else
 			"1100" when funct = "000100" else
-			"1101" when funct = "000110";
+			"1101" when funct = "000110" else
+			"zzzz" when funct = "001000";	--jr;
 
 	MemtoReg <= '0' when opcode = "001111" else --LUI INSTRUCTION
 				'1' when opcode = "100011" else
-				'0';
+				'0'; --maybe add jal here
 	
 	s_DMemWr <= '1' when opcode = "101011" else --sw
 				'0';
@@ -128,9 +138,20 @@ begin
 				'1' when funct = "000100" else
 				'1' when funct = "000110";
 	
-	Jump <= '0';
+	Jump <= '1' when opcode = "000010" else --j
+			'0';
+			
+	JumpReg <= '1' when funct = "001000" else --jr
+			   '0';
 	
-	Branch <= '0';
+	JumpNLink <= '1' when opcode = "000011" else --jal
+				 '0';
+	
+	BranchEqual <= '1' when opcode = "000100" else --beq
+					'0';
+	
+	BranchNotEqual <= '1' when opcode = "000101" else --bne
+					'0';
 	
 	MemRead <=  '1' when opcode = "001111" else
 				'1' when opcode = "100011" else

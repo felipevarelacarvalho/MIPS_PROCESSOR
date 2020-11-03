@@ -117,7 +117,8 @@ architecture structure of MIPS_Processor is
         s_RegWr		: out std_logic;
         RegDst		: out std_logic;
         Jump		: out std_logic;
-        Branch		: out std_logic;
+        BranchEqual	: out std_logic;
+		BranchNotEqual	: out std_logic;
         MemRead		: out std_logic
       );    
     end component;
@@ -293,17 +294,18 @@ begin
 
   Control : CLM --TODO update CLM
   port map(
-		opcode	=> s_Inst(31 downto 26),
-		funct	=> s_Inst(5 downto 0),
-		ALUSrc => s_AluSrc,
-		ALUControl => s_ALUOp,
-		MemtoReg=> s_MemToReg,
-		s_DMemWr=> s_DMemWr,
-		s_RegWr	=> s_RegWr,
-		RegDst	=> s_RegDst,
-		Jump	=> s_Jump,
-		Branch	=> s_BranchOnEqual,
-    MemRead => s_MemReadEnable --Not being used in Proj B, here for future reference
+		opcode		=> s_Inst(31 downto 26),
+		funct		=> s_Inst(5 downto 0),
+		ALUSrc 		=> s_AluSrc,
+		ALUControl 	=> s_ALUOp,
+		MemtoReg	=> s_MemToReg,
+		s_DMemWr	=> s_DMemWr,
+		s_RegWr		=> s_RegWr,
+		RegDst		=> s_RegDst,
+		Jump		=> s_Jump,
+		BranchEqual	=> s_BranchOnEqual,
+		BranchNotEqual => s_BranchOnNotEqual,
+		MemRead 			=> s_MemReadEnable --Not being used in Proj B, here for future reference
   ); 
 
   RegisterFile : regfile
