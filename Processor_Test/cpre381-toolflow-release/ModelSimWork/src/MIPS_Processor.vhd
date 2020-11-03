@@ -117,8 +117,11 @@ architecture structure of MIPS_Processor is
         s_RegWr		: out std_logic;
         RegDst		: out std_logic;
         Jump		: out std_logic;
+		JumpReg		: out std_logic;
+		JumpNLink	: out std_logic;
         BranchEqual	: out std_logic;
 		BranchNotEqual	: out std_logic;
+		isExtendSigned	: out std_logic;
         MemRead		: out std_logic
       );    
     end component;
@@ -200,6 +203,7 @@ architecture structure of MIPS_Processor is
   signal s_groundout : std_logic; --Assinged to signals that are not usefull
   signal s_BranchAdderOut : std_logic_vector(31 downto 0);
   signal s_BranchLogicOut : std_logic;
+  signal s_isExtendSigned : std_logic; --
 
 
   signal s_temp1 : std_logic_vector(31 downto 0);
@@ -268,7 +272,7 @@ begin
 
   SignExtend : extender
   port map(
-    signal_extend => '1',
+    signal_extend => s_isExtendSigned,
     d_in => s_Inst(15 downto 0),
     d_out => s_SignExtendOut
   );
@@ -303,8 +307,11 @@ begin
 		s_RegWr		=> s_RegWr,
 		RegDst		=> s_RegDst,
 		Jump		=> s_Jump,
+		JumpReg		=> s_jr,
+		JumpNLink	=> s_jal,
 		BranchEqual	=> s_BranchOnEqual,
 		BranchNotEqual => s_BranchOnNotEqual,
+		isExtendSigned => s_isExtendSigned,
 		MemRead 			=> s_MemReadEnable --Not being used in Proj B, here for future reference
   ); 
 

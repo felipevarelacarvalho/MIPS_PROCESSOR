@@ -17,6 +17,7 @@ entity CLM is
 		JumpNLink	: out std_logic;
 		BranchEqual	: out std_logic;
 		BranchNotEqual: out std_logic;
+		isExtendSigned: out std_logic;
 		MemRead		: out std_logic);
 end CLM;
 
@@ -43,8 +44,8 @@ begin
 			"0000" when opcode = "101011" else --sw
 			"0001" when opcode = "000100" else --beq
 			"0001" when opcode = "000101" else --bne[up]
-			"xxxx" when opcode = "000010" else --j
-			"yyyy" when opcode = "000011" else --jal
+			"0000" when opcode = "000010" else --j(don't cares)
+			"0000" when opcode = "000011" else --jal(don't cares)
 			"1010" when funct = "000010" else
 			"0000" when funct = "100000" else
 			"0000" when funct = "100001" else
@@ -61,7 +62,9 @@ begin
 			"1011" when funct = "000011" else
 			"1100" when funct = "000100" else
 			"1101" when funct = "000110" else
-			"zzzz" when funct = "001000";	--jr;
+			"0000" when opcode = "000000" AND funct = "001000" ;	--jr(don't cares)
+			
+			--CHANGE DONT CARES TO NO-OPS FOR PART C
 
 	MemtoReg <= '0' when opcode = "001111" else --LUI INSTRUCTION
 				'1' when opcode = "100011" else
@@ -141,7 +144,7 @@ begin
 	Jump <= '1' when opcode = "000010" else --j
 			'0';
 			
-	JumpReg <= '1' when funct = "001000" else --jr
+	JumpReg <= '1' when opcode = "000000" AND funct = "001000" else --jr
 			   '0';
 	
 	JumpNLink <= '1' when opcode = "000011" else --jal
@@ -152,6 +155,14 @@ begin
 	
 	BranchNotEqual <= '1' when opcode = "000101" else --bne
 					'0';
+					
+	-- 0 for all jumps and branches, else 1
+	isExtendSigned <= '0' when opcode = "000010" else --j
+					  '0' when opcode = "000000" AND funct = "001000" else --jr 
+					  '0' when opcode = "000011" else --jal
+					  '0' when opcode = "000100" else --beq
+					  '0' when opcode = "000101" else --bne
+					  '1'; --everything else
 	
 	MemRead <=  '1' when opcode = "001111" else
 				'1' when opcode = "100011" else
