@@ -344,7 +344,7 @@ begin
     data_out =>  s_ShiftLeftTwoInstructionOut
   );
 
-  s_temp2 <= ( s_PCPlusFourOut and x"10000000" ) or s_ShiftLeftTwoInstructionOut
+  s_temp2 <= ( s_PCPlusFourOut and x"10000000" ) or s_ShiftLeftTwoInstructionOut;
   Jump_Mux : MUX21_structN 
   generic map(N => N)
   port map(
