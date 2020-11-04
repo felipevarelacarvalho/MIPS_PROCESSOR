@@ -12,3 +12,4 @@
 # //  18 U.S.C. Section 1905.
 # //
 # temp/vsim.wlf opened as dataset "vsim"
+add wave -r /*
