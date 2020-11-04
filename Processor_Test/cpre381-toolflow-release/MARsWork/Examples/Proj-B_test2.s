@@ -7,36 +7,26 @@
 
 # code/instruction section
 .text
-
 addi 		$7, $0, 0x10010000	# initialize dmem
+li $sp, 0x7fffeffc  # set the stack pointer
 
 addi $1, $0, 1
-j next
+addi $2, $0, -1
+addi $3, $0, 4
+addi $4, $0, 1
 
-next:
+bne  $1, $2, part1
 
-add $2, $1, $1
-bne $1, $2, skip1
+part1:
 
-skip1: 
+beq	 $1, $4, part2
 
-addi $1, $1, 1
-beq $1, $2, skip2
+part2:
 
-skip2: 
+j main 
+add $5, $0, 1
 
-j skip3
-
-loop:
-add $1, $1, $1
-add $1, $1, $1
-add $1, $1, $1
-j final
-
-skip3:
-j loop
-
-final:
+main:
 lui $1, 1
 jal procedure
 lui $2, 10
