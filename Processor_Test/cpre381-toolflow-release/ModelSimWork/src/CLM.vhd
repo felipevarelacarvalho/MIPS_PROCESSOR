@@ -154,14 +154,12 @@ begin
 					'0';
 	
 	BranchNotEqual <= '1' when opcode = "000101" else --bne
-					'0';
+					  '0';
 					
-	-- 0 for all jumps and branches, else 1
-	isExtendSigned <= '0' when opcode = "000010" else --j
-					  '0' when opcode = "000000" AND funct = "001000" else --jr 
-					  '0' when opcode = "000011" else --jal
-					  '0' when opcode = "000100" else --beq
-					  '0' when opcode = "000101" else --bne
+	-- 0 for all immediate boolean instructions, else 1
+	isExtendSigned <= '0' when opcode = "001100" else --andi
+					  '0' when opcode = "001101" else --ori
+					  '0' when opcode = "001110" else --xori
 					  '1'; --everything else
 	
 	MemRead <=  '1' when opcode = "001111" else

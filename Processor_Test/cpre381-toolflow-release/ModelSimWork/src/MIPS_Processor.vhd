@@ -203,8 +203,8 @@ architecture structure of MIPS_Processor is
   signal s_groundout : std_logic; --Assinged to signals that are not usefull
   signal s_BranchAdderOut : std_logic_vector(31 downto 0);
   signal s_BranchLogicOut : std_logic;
-  signal s_isExtendSigned : std_logic; --
-
+  signal s_isExtendSigned : std_logic; --check for sign extension for boolean immediate functions
+  signal s_RegWrAddrIntermed : std_logic_vector(4 downto 0); --to fix intermediate mux added for jal functionality
 
   signal s_temp1 : std_logic_vector(31 downto 0);
   signal s_temp2: std_logic_vector(31 downto 0);
@@ -283,9 +283,19 @@ begin
     A => s_Inst(15 downto 11),
     B => s_Inst(20 downto 16),
     S => s_RegDst,
-    Q => s_RegWrAddr
+    Q => s_RegWrAddrIntermed
   );
 
+
+  RegDst_Final_Mux: MUX21_structN
+  generic map(N => 5)
+  port map(
+	A => "11111",
+	B => s_RegWrAddrIntermed,
+	S => s_jal,
+	Q => s_RegWrAddr
+  );
+  
   PC : Register_Nbits
   generic map(N => N)
   port map(
