@@ -22,7 +22,7 @@ if exist %lab_path% (
 ::  --nocompile: Disables compilation to save time when the processor has not changed
 ::  --max-mismatches: Number of incorrect instructions to print before the program claims failure. Default: 3
 ::  --sim-timeout: Changes the ammount of time before simulation is forcefully stopped. Default: 30
-%python_path% test_framework.py --deep-debug %1 %2 %3 %4 %5
+%python_path% test_framework.py --deep-debug %1 %2 %3 %4 %5 --sim-timeout 250
 
 ::Pause so students can see final output if they are not using the command line
 :: use > nul to hide the pause output so we can print our own message

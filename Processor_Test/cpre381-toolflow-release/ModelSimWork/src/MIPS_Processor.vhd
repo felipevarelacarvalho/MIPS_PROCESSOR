@@ -95,16 +95,16 @@ architecture structure of MIPS_Processor is
     );
   end component;
 
-  component Register_Nbits is
-    generic(N: integer);
-    port(
-      i_CLK        : in std_logic;     -- Clock input
-      i_RST        : in std_logic;     -- Reset input
-      i_WE         : in std_logic;     -- Write enable input
-      i_D          : in std_logic_vector(N-1 downto 0);     -- Data value input
-      o_Q          : out std_logic_vector(N-1 downto 0)
-    );
-    end component;
+  --component Register_Nbits is
+    --generic(N: integer);
+    --port(
+      --i_CLK        : in std_logic;     -- Clock input
+      --i_RST        : in std_logic;     -- Reset input
+      --i_WE         : in std_logic;     -- Write enable input
+      --i_D          : in std_logic_vector(N-1 downto 0);     -- Data value input
+      --o_Q          : out std_logic_vector(N-1 downto 0)
+    --);
+    --end component;
 
     component CLM is
       port(
@@ -163,7 +163,17 @@ architecture structure of MIPS_Processor is
         ComparingBit        : in std_logic;
         BranchSignal_out    : out std_logic);
     end component;
-
+	
+	--Added new PC Register for jal in phase II (10/4/2020)
+	component PC_reg is
+		generic(N : integer :=32);
+		port(i_CLK   : in std_logic;     -- Clock input
+		i_RST        : in std_logic;     -- Reset input
+		i_WE         : in std_logic;     -- Write enable input
+		i_D          : in std_logic_vector(N-1 downto 0);     -- Data value input
+		o_Q          : out std_logic_vector(N-1 downto 0));   -- Data value output
+	end component;
+	
 
   -------------------------------------------------------------------------------------------------------
   --Additional Signals
@@ -296,7 +306,7 @@ begin
 	Q => s_RegWrAddr
   );
   
-  PC : Register_Nbits
+  PC : PC_reg --Changed to PC_reg instead of register_Nbits (11/4/2020)
   generic map(N => N)
   port map(
     i_clk => iCLK,

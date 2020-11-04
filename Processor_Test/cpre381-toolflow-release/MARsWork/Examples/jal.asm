@@ -4,6 +4,7 @@
 # code/instruction section
 .text
 main:    #assume value a is already in $t0, b in $t1
+	li $sp, 0x7fffeffc  # set the stack pointer 
 	addi $t0, $0, 2
 	addi $t1 ,$0, 3
     add $a0,$0,$t0   # it's the same function as move the value
