@@ -84,7 +84,7 @@ begin
 			'1' when "001110", --xori 
 			'1' when "001111", --lui
 			'1' when "100011", --lw 
- 
+			'1' when "000011", --jal
 			'0' when others;
 	--PROGRESS SO FAR:
 	--	srl: WORKS
@@ -142,6 +142,7 @@ begin
 				'1' when funct = "000110";
 	
 	Jump <= '1' when opcode = "000010" else --j
+			--'1' when opcode = "000011" else --jal (Commented out for test purposes)
 			'0';
 			
 	JumpReg <= '1' when opcode = "000000" AND funct = "001000" else --jr
