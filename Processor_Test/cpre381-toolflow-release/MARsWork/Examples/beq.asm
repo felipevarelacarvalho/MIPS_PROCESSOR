@@ -8,8 +8,8 @@ addi $1, $0, 1
 addi $2, $0, 3
 addi $3, $0, 3
 
-bne $1, $3, EXIT #should keep going here
-bne $2, $3, EXIT #now it branches to exit
+beq $1, $3, EXIT #should keep going here
+beq $2, $3, EXIT #now it branches to exit
 
 EXIT:
 

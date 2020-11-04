@@ -142,7 +142,7 @@ begin
 				'1' when funct = "000110";
 	
 	Jump <= '1' when opcode = "000010" else --j
-			--'1' when opcode = "000011" else --jal (Commented out for test purposes)
+			'1' when opcode = "000011" else --jal (Commented out for test purposes)
 			'0';
 			
 	JumpReg <= '1' when opcode = "000000" AND funct = "001000" else --jr
