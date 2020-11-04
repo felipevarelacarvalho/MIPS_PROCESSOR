@@ -1,9 +1,9 @@
 |MIPS_Processor
 iCLK => mem:IMem.clk
 iCLK => mem:DMem.clk
-iCLK => Register_Nbits:PC.i_CLK
+iCLK => PC_reg:PC.i_CLK
 iCLK => regfile:RegisterFile.clk
-iRST => Register_Nbits:PC.i_RST
+iRST => PC_reg:PC.i_RST
 iRST => regfile:RegisterFile.rst
 iInstLd => mem:IMem.we
 iInstLd => s_IMemAddr[11].OUTPUTSELECT
@@ -5551,7 +5551,150 @@ i_B => o_F.IN1
 o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MIPS_Processor|Register_Nbits:PC
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux
+A[0] => andg2:G1:0:g_AND1.i_A
+A[1] => andg2:G1:1:g_AND1.i_A
+A[2] => andg2:G1:2:g_AND1.i_A
+A[3] => andg2:G1:3:g_AND1.i_A
+A[4] => andg2:G1:4:g_AND1.i_A
+B[0] => andg2:G1:0:g_AND2.i_A
+B[1] => andg2:G1:1:g_AND2.i_A
+B[2] => andg2:G1:2:g_AND2.i_A
+B[3] => andg2:G1:3:g_AND2.i_A
+B[4] => andg2:G1:4:g_AND2.i_A
+S => andg2:G1:0:g_AND1.i_B
+S => invg:G1:0:g_NOT1.i_A
+S => andg2:G1:1:g_AND1.i_B
+S => invg:G1:1:g_NOT1.i_A
+S => andg2:G1:2:g_AND1.i_B
+S => invg:G1:2:g_NOT1.i_A
+S => andg2:G1:3:g_AND1.i_B
+S => invg:G1:3:g_NOT1.i_A
+S => andg2:G1:4:g_AND1.i_B
+S => invg:G1:4:g_NOT1.i_A
+Q[0] <= org2:G1:0:g_OR1.o_F
+Q[1] <= org2:G1:1:g_OR1.o_F
+Q[2] <= org2:G1:2:g_OR1.o_F
+Q[3] <= org2:G1:3:g_OR1.o_F
+Q[4] <= org2:G1:4:g_OR1.o_F
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|andg2:\G1:0:g_AND1
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|invg:\G1:0:g_NOT1
+i_A => o_F.DATAIN
+o_F <= i_A.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|andg2:\G1:0:g_AND2
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|org2:\G1:0:g_OR1
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|andg2:\G1:1:g_AND1
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|invg:\G1:1:g_NOT1
+i_A => o_F.DATAIN
+o_F <= i_A.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|andg2:\G1:1:g_AND2
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|org2:\G1:1:g_OR1
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|andg2:\G1:2:g_AND1
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|invg:\G1:2:g_NOT1
+i_A => o_F.DATAIN
+o_F <= i_A.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|andg2:\G1:2:g_AND2
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|org2:\G1:2:g_OR1
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|andg2:\G1:3:g_AND1
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|invg:\G1:3:g_NOT1
+i_A => o_F.DATAIN
+o_F <= i_A.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|andg2:\G1:3:g_AND2
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|org2:\G1:3:g_OR1
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|andg2:\G1:4:g_AND1
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|invg:\G1:4:g_NOT1
+i_A => o_F.DATAIN
+o_F <= i_A.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|andg2:\G1:4:g_AND2
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|MUX21_structN:RegDst_Final_Mux|org2:\G1:4:g_OR1
+i_A => o_F.IN0
+i_B => o_F.IN1
+o_F <= o_F.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|PC_reg:PC
 i_CLK => s_Q[0].CLK
 i_CLK => s_Q[1].CLK
 i_CLK => s_Q[2].CLK
@@ -5606,7 +5749,7 @@ i_RST => s_Q[18].ACLR
 i_RST => s_Q[19].ACLR
 i_RST => s_Q[20].ACLR
 i_RST => s_Q[21].ACLR
-i_RST => s_Q[22].ACLR
+i_RST => s_Q[22].PRESET
 i_RST => s_Q[23].ACLR
 i_RST => s_Q[24].ACLR
 i_RST => s_Q[25].ACLR
@@ -5922,11 +6065,12 @@ MemtoReg <= MemtoReg.DB_MAX_OUTPUT_PORT_TYPE
 s_DMemWr <= Equal22.DB_MAX_OUTPUT_PORT_TYPE
 s_RegWr <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
 RegDst <= RegDst$latch.DB_MAX_OUTPUT_PORT_TYPE
-Jump <= Equal21.DB_MAX_OUTPUT_PORT_TYPE
+Jump <= Jump.DB_MAX_OUTPUT_PORT_TYPE
 JumpReg <= ALUControl.DB_MAX_OUTPUT_PORT_TYPE
 JumpNLink <= Equal20.DB_MAX_OUTPUT_PORT_TYPE
 BranchEqual <= Equal1.DB_MAX_OUTPUT_PORT_TYPE
 BranchNotEqual <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+isExtendSigned <= isExtendSigned.DB_MAX_OUTPUT_PORT_TYPE
 MemRead <= MemRead.DB_MAX_OUTPUT_PORT_TYPE
 
 
