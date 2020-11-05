@@ -12,4 +12,8 @@
 # //  18 U.S.C. Section 1905.
 # //
 # temp/vsim.wlf opened as dataset "vsim"
-add wave -r /*
+add wave -position insertpoint vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/*
+add wave -position insertpoint vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/DMem/*
+find drivers -source -time {823 ns} -cause vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/DMem/data(3)
+find drivers -source -time {1414 ns} -cause vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/DMem/data(2)
+find drivers -source -time {93 ns} -cause vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/DMem/data(6)

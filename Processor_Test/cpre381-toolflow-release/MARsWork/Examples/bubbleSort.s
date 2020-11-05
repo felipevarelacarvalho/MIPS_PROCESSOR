@@ -53,7 +53,8 @@ Loop1: # First for loop in BubbleSort, loops through the array
 	Loop2: # Second for loop in BubbleSort, decides on whether or not to swap
 		
 		sll $t9, $t0, 2					# calculate i * 4 for accessing in array
-		sub $t5, $t9, $t0 				# set arrLEN-i-1 on every iteration
+		sll i*4, i, 2					# calculate i * 4 for accessing in array
+		sub arrLEN-i*4-4, i*4, $t0 				# set arrLEN-i-1 on every iteration
 		
 		la $s2, inputArr
 		add $s2, $s2, $t3
@@ -94,7 +95,7 @@ ExitLoop1:
 # Signals:
 
 # Temps: 
-	# $t0: i
+	# $t0: i --> $t7
 	# $t1: j
 	# $t2: array length
 	# $t3: address incrementer
@@ -103,7 +104,7 @@ ExitLoop1:
 	# $t6: dst1 for the first bge and the 2 ble's
 	
 # args: 
-	# $a0: arr[j]
+	# $a0: arr[j] -->$a7
 	# $a1: arr[j+1]
 	# $a2: temp
 	# $a3: bool for swap
@@ -113,6 +114,10 @@ ExitLoop1:
 	
 # other: 
 	#s2: address for the array indexes
+	
+#results:
+	#$v0: toPrint
+	#$v1
 	
 # // A function to implement bubble sort 
 # void bubbleSort(int arr[], int n) 
