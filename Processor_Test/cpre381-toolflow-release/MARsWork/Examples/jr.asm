@@ -9,6 +9,8 @@
 # jal procedure
 # lui $2, 10
 
+li $sp, 0x7fffeffc  # set the stack pointer 
+
 lui $1, 3
 jr $ra
 
