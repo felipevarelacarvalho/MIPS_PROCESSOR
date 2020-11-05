@@ -31,6 +31,7 @@ lw  			$t9, 0($s2)				# $s2 is the address, what do I change $t9 to?
 addi 			$a3, $0, 1				#boolean for swap = true (if 0 then swap = false)
 addi 			$t0, $0, 0				# i = 0
 addi 			$t1, $0, 0				# j = 0
+addi			$t3, $0, 0				#addrIterator = 0;
 
 # getting arrLen
 add	$t2, $0, $s2 						# $t2 = arr.length
@@ -40,6 +41,9 @@ Loop1: # First for loop in BubbleSort, loops through the array
 
 	beq $a3, $0, ExitLoop1				# if swap == false then exit bubblesort
 	addi $a3, $0, 0						# set swap = false
+	
+	addi $t3, $0, 0
+	la $s2, inputArr
 
 	# bge $t0, $t2, ExitLoop1
 	slt $t6, $t1, $t4 					# check if j > arr.length - 1
@@ -48,6 +52,9 @@ Loop1: # First for loop in BubbleSort, loops through the array
 	Loop2: # Second for loop in BubbleSort, decides on whether or not to swap
 	
 		sub $t5, $t4, $t0 				# set arrLEN-i-1 on every iteration
+		
+		
+		add $s2, $s2, $t3
 		
 		# ble $t1, $t5, Loop1: Go back to Loop1 if j >= arrLEN - i - 1
 		slt $t7, $t1, $t5				# check if j < arrLEN, if true this outputs 1 which skips over the beq statement below
@@ -70,7 +77,7 @@ Loop1: # First for loop in BubbleSort, loops through the array
 		Update:
 		addi $t1, $t1, 1				# j++;
 		sll  $t3, $t1, 2				# $t3 = j * 4;
-        add  $s2, $s2, $t3				# point to next element in array
+		add $s2, $s2, $t3
 		
         j Loop2							# jump to next iteration of for loop
 		
