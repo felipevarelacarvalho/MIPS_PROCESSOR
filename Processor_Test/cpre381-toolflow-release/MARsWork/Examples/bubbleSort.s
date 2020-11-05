@@ -26,7 +26,6 @@ BUBBLESORT:
 
 # getting the address(need to add lab1 above as "lab1: .byte 0xa1" in the .data section)
 la 				$s2, inputArr			# load address of inputArr into MIPS
-lw  			$t9, 0($s2)				# $s2 is the address, what do I change $t9 to?
 
 addi 			$a3, $0, 1				#boolean for swap = true (if 0 then swap = false)
 addi 			$t0, $0, 0				# i = 0
@@ -35,7 +34,7 @@ addi			$t3, $0, 0				#addrIterator = 0;
 
 # getting arrLen
 add	$t2, $0, $s2 						# $t2 = arr.length
-addi $t4, $t2, -1 						# $t2 = arr.length - 1 
+addi $t4, $t2, -4 						# $t2 = arr.length - 1 
 
 Loop1: # First for loop in BubbleSort, loops through the array
 
@@ -44,29 +43,33 @@ Loop1: # First for loop in BubbleSort, loops through the array
 	
 	addi $t3, $0, 0
 	la $s2, inputArr
+	
+	lw $t7, 0($t4)						#pull val at arrLEN -1
 
 	# bge $t0, $t2, ExitLoop1
-	slt $t6, $t1, $t4 					# check if j > arr.length - 1
-	beq $t6, $0, ExitLoop1 				# check if result of $t > $s is true, if true exit for loop
+	slt $t6, $t7, $t1 					# check if j > arr.length - 1
+	bne $t6, $0, ExitLoop1 				# check if result of $t > $s is true, if true exit for loop
 	
 	Loop2: # Second for loop in BubbleSort, decides on whether or not to swap
-	
-		sub $t5, $t4, $t0 				# set arrLEN-i-1 on every iteration
 		
+		sll $t9, $t0, 2					# calculate i * 4 for accessing in array
+		sub $t5, $t9, $t0 				# set arrLEN-i-1 on every iteration
 		
+		la $s2, inputArr
 		add $s2, $s2, $t3
 		
+		lw $t8, 0($t5)					# access value in array at arrLEN - i - 1
 		# ble $t1, $t5, Loop1: Go back to Loop1 if j >= arrLEN - i - 1
-		slt $t7, $t1, $t5				# check if j < arrLEN, if true this outputs 1 which skips over the beq statement below
-		beq $t7, $0, ExitLoop2 			# check if result of $t > $s is true, if true exit for loop
+		slt $t6, $t1, $t8				# check if j < arrLEN, if true this outputs 1 which skips over the beq statement below
+		beq $t6, $0, ExitLoop2 			# check if result of $t > $s is true, if true exit for loop
 
 		# load from array
 		lw $a0, 0($s2)			# $a0 = arr[j];
         lw $a1, 4($s2)			# $a1 = arr[j+1];
 		
 		# ble $a0, $a1, Update: Skip over swap process if arr[j] <= arr[j+1]
-		slt $t8, $a1, $a0
-		beq $t8, $0, Update
+		slt $t6, $a1, $a0
+		beq $t6, $0, Update
 		
 		Swap:
 		add $a2, $0, $a0				# int temp = &arr[j];
@@ -97,15 +100,16 @@ ExitLoop1:
 	# $t3: address incrementer
 	# $t4: array length - 1
 	# $t5: array length - i - 1
-	# $t6: dst1 for the first bge
-	# $t7: dst2 for the first ble
-	# $t8: dst3 for the second ble
+	# $t6: dst1 for the first bge and the 2 ble's
 	
 # args: 
 	# $a0: arr[j]
 	# $a1: arr[j+1]
 	# $a2: temp
 	# $a3: bool for swap
+	# $a4: value at arrLEN - 1
+	# $a5: value ar arrLEN - i - 1
+	# $a6: i * 4
 	
 # other: 
 	#s2: address for the array indexes
