@@ -35,6 +35,16 @@ component Register_Nbits is
        o_Q		: out std_logic_vector(N-1 downto 0));   -- Data value output
 end component;
 
+--1 Bit Register for the Single Bit Instructions
+component Register_1bit is
+	generic(N : integer);
+	port(i_CLK        : in std_logic;     					 	-- Clock input
+		 i_RST        : in std_logic;     					 	-- Reset input
+		 i_WE         : in std_logic;     					 	-- Write enable input
+		 i_D          : in std_logic;     						-- Data value input
+		 o_Q          : out std_logic);   						-- Data value output
+  end component;
+
 -- 32 Bit Registers(READ_DATA2,ALU-OUTPUT-INPUT,PC+4)
 begin 
 
@@ -70,7 +80,7 @@ begin
 -- 1 Bit Registers(jal, memToReg, memWr)
 
 -- jal
-mem_wb_jal_reg : Register_Nbits
+mem_wb_jal_reg : Register_1bit
 	generic MAP(N => 1)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_MEMWB,
@@ -80,7 +90,7 @@ mem_wb_jal_reg : Register_Nbits
 	);
 	
 -- memToReg
-mem_wb_memToReg_reg : Register_Nbits
+mem_wb_memToReg_reg : Register_1bit
 	generic MAP(N => 1)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_MEMWB,
