@@ -1,0 +1,26 @@
+
+Version fa2020.1
+
+Release Notes:
+
+1. Improved error policies
+    Students shouldn't see python exceptions in the console. Instead they should see a
+    a message telling them the error has been logged to temp/errors.log and to post to
+    Canvas with any bugs.
+
+2. Can keep waveform open while running
+    .wlf files can now remain open in ModelSim while the framework is running, to reload
+    the log go to file->datadets->reload
+
+3. Handle Mars errors more gracefully
+    The Mars dump is now scanned ahead of time to find Sim-time errors (like unaligned
+    address) early on in the framework's execution.
+
+4. Better validation at the start of runs
+    The test framework checks if tb_SimplifiedMIPSProcessor.vhd has been modified and
+    prints a warning if it has been modified. The simulation framework checks if quartus
+    is installed before trying to  run. 
+
+5. Looser comparison
+    the dump comparison now ignores any writes to $zero. Allowing students more flexibility
+    for multicycle processors.
