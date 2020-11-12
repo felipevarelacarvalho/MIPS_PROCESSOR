@@ -4,12 +4,11 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity ex_mem is
-
 generic(N : integer := 32);
-port(i_CLK 				: in std_logic; 						-- Clock Input
+port(i_CLK 			: in std_logic; 						-- Clock Input
 	 i_RST_EXMEM		: in std_logic; 						-- Reset Input
 	 i_WE_EXMEM 		: in std_logic; 						-- Write Enable Input
-	 o_Q_EXMEM 			: out std_logic_vector(N-1 downto 0)); 	-- Data Value Output
+	 o_Q_EXMEM 		: out std_logic_vector(N-1 downto 0); 	-- Data Value Output
 	 -- INPUT PORTS FOR EX-MEM
 	 i_JAL_EXMEM 		: in std_logic;							-- Jal Instruction
 	 i_MEMTOREG_EXMEM	: in std_logic;							-- MemToReg Instruction
@@ -18,12 +17,12 @@ port(i_CLK 				: in std_logic; 						-- Clock Input
 	 i_ALU_OUT_EXMEM	: in std_logic_vector(N-1 downto 0);	-- input fromt the ALU output
 	 i_READ_DATA2_EXMEM	: in std_logic_vector(N-1 downto 0);	-- Read Data 2
 	 -- OUTPUT PORTS FOR EX-MEM
-	 o_JAL_EXMEM 		: in std_logic;							-- Jal Instruction
-	 o_MEMTOREG_EXMEM	: in std_logic;							-- MemToReg Instruction
-	 o_MEMWR_EXMEM		: in std_logic;							-- MemWrite Instruction
-	 o_PC_PLUS_4_EXMEM 	: in std_logic_vector(N-1 downto 0);	-- PC+4
-	 o_ALU_OUT_EXMEM	: in std_logic_vector(N-1 downto 0);	-- input fromt the ALU output
-	 o_READ_DATA2_EXMEM	: in std_logic_vector(N-1 downto 0));	-- Read Data 2
+	 o_JAL_EXMEM 		: out std_logic;							-- Jal Instruction
+	 o_MEMTOREG_EXMEM	: out std_logic;							-- MemToReg Instruction
+	 o_MEMWR_EXMEM		: out std_logic;							-- MemWrite Instruction
+	 o_PC_PLUS_4_EXMEM 	: out std_logic_vector(N-1 downto 0);	-- PC+4
+	 o_ALU_OUT_EXMEM	: out std_logic_vector(N-1 downto 0);	-- input fromt the ALU output
+	 o_READ_DATA2_EXMEM	: out std_logic_vector(N-1 downto 0));	-- Read Data 2
 end ex_mem;
 
 architecture structure of ex_mem is
@@ -43,7 +42,7 @@ begin
 
 -- READ_DATA2
 	ex_mem_data2 : Register_Nbits
-	generic MAP(N => 32);
+	generic MAP(N => 32)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_EXMEM,
 			 i_WE 	=> i_WE_EXMEM, 
@@ -53,7 +52,7 @@ begin
 
 -- ALU_OUT_INPUT
 	ex_mem_alu_OUT_IN : Register_Nbits
-	generic MAP(N => 32);
+	generic MAP(N => 32)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_EXMEM,
 			 i_WE 	=> i_WE_EXMEM, 
@@ -62,7 +61,7 @@ begin
 	);
 -- PC+4
 	ex_mem_PC4_reg : Register_Nbits
-	generic MAP(N => 32);
+	generic MAP(N => 32)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_EXMEM,
 			 i_WE 	=> i_WE_EXMEM, 
@@ -74,7 +73,7 @@ begin
 
 -- jal
 ex_mem_jal_reg : Register_Nbits
-	generic MAP(N => 1);
+	generic MAP(N => 1)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_EXMEM,
 			 i_WE 	=> i_WE_EXMEM, 
@@ -84,7 +83,7 @@ ex_mem_jal_reg : Register_Nbits
 	
 -- memToReg
 ex_mem_memToReg_reg : Register_Nbits
-	generic MAP(N => 1);
+	generic MAP(N => 1)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_EXMEM,
 			 i_WE 	=> i_WE_EXMEM, 
@@ -94,7 +93,7 @@ ex_mem_memToReg_reg : Register_Nbits
 	
 -- memWr
 ex_mem_memWr_reg : Register_Nbits
-	generic MAP(N => 1);
+	generic MAP(N => 1)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_EXMEM,
 			 i_WE 	=> i_WE_EXMEM, 
