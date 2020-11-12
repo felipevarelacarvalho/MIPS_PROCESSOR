@@ -12,8 +12,8 @@ port(i_CLK 			: in std_logic; 						-- Clock Input
 	 i_PCplusFOUR	: in std_logic_vector(N-1 downto 0);	-- PC+4(From PC)
 	 i_MEM_IFID		: in std_logic_vector(N-1 downto 0);	-- Instruction Memory(From IMEM)
 	 ---------------------------------------------------------------------------------------
-	 o_PCplusFOUR	: in std_logic_vector(N-1 downto 0);	-- PC+4(From PC)
-	 o_MEM_IFID		: in std_logic_vector(N-1 downto 0);	-- Instruction Memory(From IMEM)
+	 o_PCplusFOUR	: out std_logic_vector(N-1 downto 0);	-- PC+4(From PC)
+	 o_MEM_IFID		: out std_logic_vector(N-1 downto 0));	-- Instruction Memory(From IMEM)
 end if_id;
 
 architecture structure of if_id is
@@ -46,7 +46,7 @@ begin
 
 -- Instruction Memory
 if_id_iMem_reg : Register_Nbits
-	generic MAP(N => 32);
+	generic MAP(N => 32)
 	port MAP(i_CLK => i_CLK,
 		 i_RST => i_RST_IFID,
 		 i_WE => i_WE_IFID, 
@@ -56,7 +56,7 @@ if_id_iMem_reg : Register_Nbits
 	
 -- PC+4
 if_id_pc4_reg : Register_Nbits
-	generic MAP(N => 32);
+	generic MAP(N => 32)
 	port MAP(i_CLK => i_CLK,
 			 i_RST => i_RST_IFID,
 			 i_WE => i_WE_IFID, 
@@ -74,4 +74,4 @@ if_id_pc4_reg : Register_Nbits
 --			 o_Q => s_flush_IFID
 --	);
 	
-	
+end structure;

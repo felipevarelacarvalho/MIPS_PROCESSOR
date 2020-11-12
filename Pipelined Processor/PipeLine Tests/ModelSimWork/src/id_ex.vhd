@@ -2,7 +2,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-entity if_id is
+entity id_ex is
 generic(N : integer := 32);
 port(i_CLK 				: in std_logic; 						-- Clock Input
 	 i_RST_IDEX 		: in std_logic; 						-- Reset Input
@@ -23,35 +23,44 @@ port(i_CLK 				: in std_logic; 						-- Clock Input
 	 i_READ_DATA2_IDEX	: in std_logic_vector(N-1 downto 0);	-- Read Data 2
 	 i_PC_PLUS_4_IDEX 	: in std_logic_vector(N-1 downto 0);	-- PC+4
 	 ---------------------------------------------------------------------------------
-	 o_JAL_IDEX 		: in std_logic;							-- Jal Instruction
-	 o_J_IDEX 			: in std_logic;							-- J Instruction
-	 o_BNE_IDEX			: in std_logic;							-- Bne Instruction
-	 o_BEQ_IDEX			: in std_logic;							-- Beq Instruction
-	 o_MEMTOREG_IDEX	: in std_logic;							-- MemToReg Instruction
-	 o_MEMWR_IDEX		: in std_logic;							-- MemWrite Instruction
-	 o_ALUOP_IDEX		: in std_logic_vector(3 downto 0);		-- ALU_OP Instruction
-	 o_ALUSRC_IDEX		: in std_logic;							-- ALU_Src Instruction
-	 o_BRANCH_ADDR_IDEX : in std_logic_vector(N-1 downto 0);    --Branch Addr.
-	 o_JUMP_ADDR_IDEX 	: in std_logic_vector(N-1 downto 0);	-- Jump Addr.
-	 o_SIGN_EXT_IDEX	: in std_logic_vector(N-1 downto 0);	-- PC+4 and SignExtend
-	 o_READ_DATA1_IDEX	: in std_logic_vector(N-1 downto 0);	-- Read Data 1
-	 o_READ_DATA2_IDEX	: in std_logic_vector(N-1 downto 0);	-- Read Data 2
-	 o_PC_PLUS_4_IDEX 	: in std_logic_vector(N-1 downto 0);	-- PC+4
+	 o_JAL_IDEX 		: out std_logic;							-- Jal Instruction
+	 o_J_IDEX 			: out std_logic;							-- J Instruction
+	 o_BNE_IDEX			: out std_logic;							-- Bne Instruction
+	 o_BEQ_IDEX			: out std_logic;							-- Beq Instruction
+	 o_MEMTOREG_IDEX	: out std_logic;							-- MemToReg Instruction
+	 o_MEMWR_IDEX		: out std_logic;							-- MemWrite Instruction
+	 o_ALUOP_IDEX		: out std_logic_vector(3 downto 0);		-- ALU_OP Instruction
+	 o_ALUSRC_IDEX		: out std_logic;							-- ALU_Src Instruction
+	 o_BRANCH_ADDR_IDEX : out std_logic_vector(N-1 downto 0);    --Branch Addr.
+	 o_JUMP_ADDR_IDEX 	: out std_logic_vector(N-1 downto 0);	-- Jump Addr.
+	 o_SIGN_EXT_IDEX	: out std_logic_vector(N-1 downto 0);	-- PC+4 and SignExtend
+	 o_READ_DATA1_IDEX	: out std_logic_vector(N-1 downto 0);	-- Read Data 1
+	 o_READ_DATA2_IDEX	: out std_logic_vector(N-1 downto 0);	-- Read Data 2
+	 o_PC_PLUS_4_IDEX 	: out std_logic_vector(N-1 downto 0));	-- PC+4
 
-end if_id
+end id_ex;
 
 architecture structure of id_ex is
 
---Register(N-bits)
-component Register_Nbits:
+component Register_Nbits is
   generic(N : integer);
-  port(i_CLK	: in std_logic;     					 -- Clock input
-       i_RST	: in std_logic;     					 -- Reset input
-       i_WE		: in std_logic;     					 -- Write enable input
-       i_D		: in std_logic_vector(N-1 downto 0);     -- Data value input
-       o_Q		: out std_logic_vector(N-1 downto 0));   -- Data value output
+  port(i_CLK        : in std_logic;     					 -- Clock input
+       i_RST        : in std_logic;     					 -- Reset input
+       i_WE         : in std_logic;     					 -- Write enable input
+       i_D          : in std_logic_vector(N-1 downto 0);     -- Data value input
+       o_Q          : out std_logic_vector(N-1 downto 0));   -- Data value output
 	   
 end component;
+
+component Register_1bit is
+	generic(N : integer);
+	port(i_CLK        : in std_logic;     					 -- Clock input
+		 i_RST        : in std_logic;     					 -- Reset input
+		 i_WE         : in std_logic;     					 -- Write enable input
+		 i_D          : in std_logic;     -- Data value input
+		 o_Q          : out std_logic);   -- Data value output
+		 
+  end component;
 
 --add any addt'l components
 
@@ -80,7 +89,7 @@ begin
 
 -- READ_DATA1
 id_ex_data_reg1 : Register_Nbits
-	generic MAP(N => 32);
+	generic MAP(N => 32)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -90,7 +99,7 @@ id_ex_data_reg1 : Register_Nbits
 	
 -- READ_DATA2
 id_ex_data_reg2 : Register_Nbits
-	generic MAP(N => 32);
+	generic MAP(N => 32)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -102,7 +111,7 @@ id_ex_data_reg2 : Register_Nbits
 
 -- Jump Addr.
 id_ex_jumpAddr_reg : Register_Nbits
-	generic MAP(N => 32);
+	generic MAP(N => 32)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -112,17 +121,17 @@ id_ex_jumpAddr_reg : Register_Nbits
 	
 -- Branch Addr.
 id_ex_branchAddr_reg : Register_Nbits
-	generic MAP(N => 32);
+	generic MAP(N => 32)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
 			 i_D 	=> i_BRANCH_ADDR_IDEX,
-			 o_Q 	=> o_BRANCH_ADDR_IDE
+			 o_Q 	=> o_BRANCH_ADDR_IDEX
 	);
 
 --(PC+4)+SignExt
 id_ex_PC4_SignExt_reg : Register_Nbits
-	generic MAP(N => 32);
+	generic MAP(N => 32)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -132,7 +141,7 @@ id_ex_PC4_SignExt_reg : Register_Nbits
 	
 -- PC+4
 id_ex_PC4_reg : Register_Nbits
-	generic MAP(N => 32);
+	generic MAP(N => 32)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -142,7 +151,7 @@ id_ex_PC4_reg : Register_Nbits
 	
 -- 4 Bit Register(ALUOp)
 id_ex_ALUOp_reg : Register_Nbits
-	generic MAP(N => 4);
+	generic MAP(N => 4)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -153,8 +162,8 @@ id_ex_ALUOp_reg : Register_Nbits
 -- 1 Bit Registers(jal, j, bne, beq, memToReg, memWr, ALUSrc)
 
 -- jal
-id_ex_jal_reg : Register_Nbits
-	generic MAP(N => 1);
+id_ex_jal_reg : Register_1bit
+	generic MAP(N => 1)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -163,8 +172,8 @@ id_ex_jal_reg : Register_Nbits
 	);
 	
 -- j
-id_ex_j_reg : Register_Nbits
-	generic MAP(N => 1);
+id_ex_j_reg : Register_1bit
+	generic MAP(N => 1)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -173,8 +182,8 @@ id_ex_j_reg : Register_Nbits
 	);
 	
 -- bne
-id_ex_bne_reg : Register_Nbits
-	generic MAP(N => 1);
+id_ex_bne_reg : Register_1bit
+	generic MAP(N => 1)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -183,8 +192,8 @@ id_ex_bne_reg : Register_Nbits
 	);
 	
 -- beq
-id_ex_beq_reg : Register_Nbits
-	generic MAP(N => 1);
+id_ex_beq_reg : Register_1bit
+	generic MAP(N => 1)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -193,8 +202,8 @@ id_ex_beq_reg : Register_Nbits
 	);
 	
 -- memToReg
-id_ex_memToReg_reg : Register_Nbits
-	generic MAP(N => 1);
+id_ex_memToReg_reg : Register_1bit
+	generic MAP(N => 1)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -203,8 +212,8 @@ id_ex_memToReg_reg : Register_Nbits
 	);
 	
 -- memWr
-id_ex_memWr_reg : Register_Nbits
-	generic MAP(N => 1);
+id_ex_memWr_reg : Register_1bit
+	generic MAP(N => 1)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -213,8 +222,8 @@ id_ex_memWr_reg : Register_Nbits
 	);
 	
 -- ALUSrc
-id_ex_ALUSrc_reg : Register_Nbits
-	generic MAP(N => 1);
+id_ex_ALUSrc_reg : Register_1bit
+	generic MAP(N => 1)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_IDEX,
 			 i_WE 	=> i_WE_IDEX, 
@@ -222,3 +231,4 @@ id_ex_ALUSrc_reg : Register_Nbits
 			 o_Q 	=> o_ALUSRC_IDEX
 	);
 	
+end structure;
