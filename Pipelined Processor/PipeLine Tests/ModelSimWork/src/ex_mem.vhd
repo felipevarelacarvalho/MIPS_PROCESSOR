@@ -2,6 +2,7 @@
 
 entity if_id is
 
+generic(N : integer := 32);
 port(i_CLK 			: in std_logic; 						-- Clock Input
 	 i_RST_EXMEM	: in std_logic; 						-- Reset Input
 	 i_WE_EXMEM 	: in std_logic; 						-- Write Enable Input
@@ -14,7 +15,7 @@ architecture structure of ex_mem is
 
 component Register_Nbits:
 
-  generic(N : integer :=32);
+  generic(N : integer := 32);
   port(i_CLK        : in std_logic;     					 -- Clock input
        i_RST        : in std_logic;     					 -- Reset input
        i_WE         : in std_logic;     					 -- Write enable input
