@@ -38,8 +38,8 @@ port(i_CLK 				: in std_logic; 						-- Clock Input
 	 o_SIGN_EXT_IDEX	: out std_logic_vector(N-1 downto 0);	-- PC+4 and SignExtend
 	 o_READ_DATA1_IDEX	: out std_logic_vector(N-1 downto 0);	-- Read Data 1
 	 o_READ_DATA2_IDEX	: out std_logic_vector(N-1 downto 0);	-- Read Data 2
-	 o_PC_PLUS_4_IDEX 	: out std_logic_vector(N-1 downto 0));	-- PC+4
-	 o_Instruction      : out std_logic_vector(N-1 downto 0);   --intruction to be passed to the ALU
+	 o_PC_PLUS_4_IDEX 	: out std_logic_vector(N-1 downto 0);	-- PC+4
+	 o_Instruction      : out std_logic_vector(N-1 downto 0));   --intruction to be passed to the ALU
 
 end id_ex;
 
@@ -57,11 +57,11 @@ end component;
 
 component Register_1bit is
 	generic(N : integer);
-	port(i_CLK        : in std_logic;     					 -- Clock input
-		 i_RST        : in std_logic;     					 -- Reset input
-		 i_WE         : in std_logic;     					 -- Write enable input
-		 i_D          : in std_logic;     -- Data value input
-		 o_Q          : out std_logic);   -- Data value output
+	port(i_CLK        : in std_logic;     					-- Clock input
+		 i_RST        : in std_logic;     					-- Reset input
+		 i_WE         : in std_logic;     					-- Write enable input
+		 i_D          : in std_logic;     					-- Data value input
+		 o_Q          : out std_logic);   					-- Data value output
 		 
   end component;
 
