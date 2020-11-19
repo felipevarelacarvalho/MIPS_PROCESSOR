@@ -71,11 +71,41 @@ la $s2, inputArr 	# load address of inputArr into MIPS(this is addr. of arr[0])
 #	-This is dependent on the output array, which should match anyways
 
 # Finding arr.length and its derivatives(arr.length - 1 and arr.length - 1 - i)
+
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+
 sub $s3, $s2, $at # get arr.len(10 * 4(size of a word)
 #arr.length
+
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+
 sra $s3, $s3, 2 # this is arr.length(=10) after accounting for the size of words
+
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+
 #arr.length-1
+
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+
 addi $s4, $s3, -1 # this is arr.length -1
+
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+
 #arr.length-1-i(This is used in the conditional for the inner for loop)
 sub $s5, $s4, $s0 # this is arr.length-1-i
 
@@ -90,6 +120,12 @@ OuterForLoop:
 	#	 beq $at, $zero, C
 	
 	slt $at, $s0, $s4 #checks if i<length-1, if true then no branch
+	
+	addi		$0,  $0,  0			# Place stall
+	addi		$0,  $0,  0			# Place stall
+	addi		$0,  $0,  0			# Place stall
+	addi		$0,  $0,  0			# Place stall
+	
 	beq $at, $zero, Exit #if this fails in testing $t8 will = 1: WORKS
 
 	addi $s1, $0, 0 # Set j=0 to prep for the Inner For Loop
@@ -103,8 +139,19 @@ OuterForLoop:
 		#	 outline of bge:
 		#	 slt $at, $s, $t
 		# 	beq $at, $zero, C
-	
+		
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		
 		slt $at, $s1, $s5 # checks if j<length-1-i, if true then no branch
+		
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		
 		beq $at, $zero, ExitInnerLoop #if this fails in testing then $t8 will = 2: WORKS
 		
 		# If statement for swap:
@@ -121,20 +168,42 @@ OuterForLoop:
 		add $t3, $0, $s2 #compute addr. of arr[0]
 		
 		#calculate current address:
+		
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		
 		add $t3, $t3, $t2 #this is the address of arr[j](addr. of arr[0] + j*4)
-	
+		
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		
 		#loading in arr[j] and arr[j+1]:
 		lw $t0, 0($t3)	#store arr[j] as $t0
 		lw $t1, 4($t3)	#store arr[j+1] as $t1
 
 		#check if arr[j] > arr[j+1], this uses ble arr[j], arr[j+1], Swap
 		slt $at, $t1, $t0 # check if arr[j+1] < arr[j], if true no branch
+		
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		
 		beq $at, $zero, Update #if this fails then $t8 will = 3: WORKS
 		
 		#Swap: Swaps the elements $t0 and $t1 using a temp $
 		Swap:
 			add $t9, $0, $t0				# int temp = &arr[j];
 			add $t0, $0, $t1				# &arr[j] = &arr[j+1];
+			
+			addi		$0,  $0,  0			# Place stall
+			addi		$0,  $0,  0			# Place stall
+			addi		$0,  $0,  0			# Place stall
+			
 			add $t1, $0, $t9				# &arr[j+1] = temp;
 		
 		#Update: Prepare values to jump back into InnerForLoop, Store Words Here

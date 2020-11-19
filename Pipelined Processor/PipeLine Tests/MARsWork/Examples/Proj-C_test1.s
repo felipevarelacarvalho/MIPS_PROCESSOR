@@ -92,7 +92,7 @@ jal 		addthem      		# call procedure
 
 add 		$t3,$0,$v0   		# move the return value from $v0 to where we want
 
-addi  		$2,  $0,  10      		# Place "10" in $v0 to signal an "exit" or "halt"
+addi  		$2,  $0,  10      	# Place "10" in $v0 to signal an "exit" or "halt"
 syscall                 		# Actually cause the halt
 
 addthem:
