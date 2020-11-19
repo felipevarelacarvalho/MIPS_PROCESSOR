@@ -23,6 +23,7 @@ port(i_CLK 				: in std_logic; 						-- Clock Input
 	 i_READ_DATA1_IDEX	: in std_logic_vector(N-1 downto 0);	-- Read Data 1
 	 i_READ_DATA2_IDEX	: in std_logic_vector(N-1 downto 0);	-- Read Data 2
 	 i_PC_PLUS_4_IDEX 	: in std_logic_vector(N-1 downto 0);	-- PC+4
+	 i_Instruction     : in std_logic_vector(N-1 downto 0);    --Instruction coming from Imem
 	 ---------------------------------------------------------------------------------
 	 o_JAL_IDEX 		: out std_logic;							-- Jal Instruction
 	 o_J_IDEX 			: out std_logic;							-- J Instruction
@@ -38,6 +39,7 @@ port(i_CLK 				: in std_logic; 						-- Clock Input
 	 o_READ_DATA1_IDEX	: out std_logic_vector(N-1 downto 0);	-- Read Data 1
 	 o_READ_DATA2_IDEX	: out std_logic_vector(N-1 downto 0);	-- Read Data 2
 	 o_PC_PLUS_4_IDEX 	: out std_logic_vector(N-1 downto 0));	-- PC+4
+	 o_Instruction      : out std_logic_vector(N-1 downto 0);   --intruction to be passed to the ALU
 
 end id_ex;
 
@@ -148,6 +150,16 @@ id_ex_PC4_reg : Register_Nbits
 			 i_WE 	=> i_WE_IDEX, 
 			 i_D 	=> i_PC_PLUS_4_IDEX,
 			 o_Q 	=> o_PC_PLUS_4_IDEX
+	);
+
+-- Instruction from Imem
+id_ex_PC4_reg : Register_Nbits
+	generic MAP(N => 32)
+	port MAP(i_CLK 	=> i_CLK,
+			 i_RST 	=> i_RST_IDEX,
+			 i_WE 	=> i_WE_IDEX, 
+			 i_D 	=> i_Instruction,
+			 o_Q 	=> o_Instruction
 	);
 	
 -- 4 Bit Register(ALUOp)
