@@ -206,6 +206,7 @@ architecture structure of MIPS_Processor is
       i_MEMWR_IDEX			: in std_logic;							-- MemWrite Instruction
       i_ALUOP_IDEX			: in std_logic_vector(3 downto 0);		-- ALU_OP Instruction
       i_ALUSRC_IDEX			: in std_logic;							-- ALU_Src Instruction
+	  i_RegWr_IDEX       : in std_logic;							-- Register Write to go to Write phase (Added 11/19/20)
       i_BRANCH_ADDR_IDEX	: in std_logic_vector(N-1 downto 0);    -- Branch Addr.
       i_JUMP_ADDR_IDEX 		: in std_logic_vector(N-1 downto 0);	-- Jump Addr.
       i_SIGN_EXT_IDEX		: in std_logic_vector(N-1 downto 0);	-- PC+4 and SignExtend
@@ -213,6 +214,7 @@ architecture structure of MIPS_Processor is
       i_READ_DATA2_IDEX		: in std_logic_vector(N-1 downto 0);	-- Read Data 2
       i_PC_PLUS_4_IDEX 		: in std_logic_vector(N-1 downto 0);	-- PC+4
 	  i_Instruction			: in std_logic_vector(N-1 downto 0);    --Instruction coming from Imem
+	  i_WriteRegAddr_IDEX   : in std_logic_vector(N-1 downto 0);   --Write register address
       ---------------------------------------------------------------------------------
       o_JAL_IDEX 			: out std_logic;						-- Jal Instruction
       o_J_IDEX 				: out std_logic;						-- J Instruction
@@ -222,13 +224,15 @@ architecture structure of MIPS_Processor is
       o_MEMWR_IDEX			: out std_logic;						-- MemWrite Instruction
       o_ALUOP_IDEX			: out std_logic_vector(3 downto 0);		-- ALU_OP Instruction
       o_ALUSRC_IDEX			: out std_logic;						-- ALU_Src Instruction
+	  o_RegWr_IDEX          : out std_logic;							-- Register Write to go to Write phase (Added 11/19/20
       o_BRANCH_ADDR_IDEX 	: out std_logic_vector(N-1 downto 0);  	-- Branch Addr.
       o_JUMP_ADDR_IDEX 		: out std_logic_vector(N-1 downto 0);	-- Jump Addr.
       o_SIGN_EXT_IDEX		: out std_logic_vector(N-1 downto 0);	-- PC+4 and SignExtend
       o_READ_DATA1_IDEX		: out std_logic_vector(N-1 downto 0);	-- Read Data 1
       o_READ_DATA2_IDEX		: out std_logic_vector(N-1 downto 0);	-- Read Data 2
       o_PC_PLUS_4_IDEX 		: out std_logic_vector(N-1 downto 0);	-- PC+4
-	  o_Instruction			: out std_logic_vector(N-1 downto 0));   --intruction to be passed to the ALU
+	  o_Instruction			: out std_logic_vector(N-1 downto 0);   --intruction to be passed to the ALU
+	  o_WriteRegAddr_IDEX   : out std_logic_vector(N-1 downto 0));   --Write register address
   end component;
   component ex_mem is
     generic(N : integer := 32);
@@ -240,16 +244,20 @@ architecture structure of MIPS_Processor is
       i_JAL_EXMEM 			: in std_logic;							-- Jal Instruction
       i_MEMTOREG_EXMEM		: in std_logic;							-- MemToReg Instruction
       i_MEMWR_EXMEM			: in std_logic;							-- MemWrite Instruction
+	  i_RegWr_EXMEM         : in std_logic;							-- Register Write to go to Write phase (Added 11/19/20)
       i_PC_PLUS_4_EXMEM 	: in std_logic_vector(N-1 downto 0);	-- PC+4
       i_ALU_OUT_EXMEM		: in std_logic_vector(N-1 downto 0);	-- input fromt the ALU output
       i_READ_DATA2_EXMEM	: in std_logic_vector(N-1 downto 0);	-- Read Data 2
+	  i_WriteRegAddr_EXMEM  : in std_logic_vector(N-1 downto 0);   --Write register address
       -- OUTPUT PORTS FOR EX-MEM
       o_JAL_EXMEM 			: out std_logic;						-- Jal Instruction
       o_MEMTOREG_EXMEM		: out std_logic;						-- MemToReg Instruction
       o_MEMWR_EXMEM			: out std_logic;						-- MemWrite Instruction
+	  o_RegWr_EXMEM          : out std_logic;					    -- Register Write to go to Write phase (Added 11/19/20
       o_PC_PLUS_4_EXMEM 	: out std_logic_vector(N-1 downto 0);	-- PC+4
       o_ALU_OUT_EXMEM		: out std_logic_vector(N-1 downto 0);	-- input fromt the ALU output
-      o_READ_DATA2_EXMEM	: out std_logic_vector(N-1 downto 0));	-- Read Data 2
+      o_READ_DATA2_EXMEM	: out std_logic_vector(N-1 downto 0);	-- Read Data 2
+	  o_WriteRegAddr_EXMEM  : out std_logic_vector(N-1 downto 0));   --Write register address
   end component;
 
   component mem_wb is
@@ -261,15 +269,19 @@ architecture structure of MIPS_Processor is
        -- INPUT PORTS FOR MEM-WB
        i_JAL_MEMWB 			: in std_logic;							-- Jal Instruction
        i_MEMTOREG_MEMWB		: in std_logic;							-- MemToReg Instruction
+	   i_RegWr_MEMWB        : in std_logic;							-- Register Write to go to Write phase (Added 11/19/20)
        i_PC_PLUS_4_MEMWB 	: in std_logic_vector(N-1 downto 0);	-- PC+4
        i_MEMWR_READ_MEMWB	: in std_logic_vector(N-1 downto 0);	-- input fromt the ALU output
        i_ALU_OUT_MEMWB		: in std_logic_vector(N-1 downto 0);	-- Read Data 2
+	   i_WriteRegAddr_MEMWB : in std_logic_vector(N-1 downto 0);    --Write register address
        -- OUTPUT PORTS FOR MEM-WB
        o_JAL_MEMWB 			: out std_logic;						-- Jal Instruction
        o_MEMTOREG_MEMWB		: out std_logic;						-- MemToReg Instruction
+	   o_RegWr_MEMWB        : out std_logic;					    -- Register Write to go to Write phase (Added 11/19/20
        o_PC_PLUS_4_MEMWB 	: out std_logic_vector(N-1 downto 0);	-- PC+4
        o_MEMWR_READ_MEMWB	: out std_logic_vector(N-1 downto 0);	-- input fromt the ALU output
-       o_ALU_OUT_MEMWB		: out std_logic_vector(N-1 downto 0));	-- Read Data 2
+       o_ALU_OUT_MEMWB		: out std_logic_vector(N-1 downto 0);	-- Read Data 2
+	   o_WriteRegAddr_MEMWB : out std_logic_vector(N-1 downto 0));  --Write register address
   end component;
   
 
@@ -344,7 +356,8 @@ architecture structure of MIPS_Processor is
   signal s_beq_toIDEX 					: std_logic;							-- signal for BEQ input to ID/EX
   signal s_bne_toIDEX 					: std_logic;							-- signal for BNE input to ID/EX
   signal s_iMem_toIDEX 					: std_logic_vector(31 downto 0);		-- signal for InstrMem input to ID/EX  
-
+  signal s_RegWr_toIDEX                 : std_logic;                            -- signal for RegWr input to ID/EX
+  signal s_WriteRegAddr_toIDEX          : std_logic_vector(4 downto 0);        -- signal for the Write Address input to ID/EX
   --outputs:
   signal s_jal_fromIDEX 				: std_logic; 							-- signal for jal output from ID/EX
   signal s_j_fromIDEX 					: std_logic; 							-- signal for j output from ID/EX
@@ -352,6 +365,7 @@ architecture structure of MIPS_Processor is
   signal s_beq_fromIDEX 				: std_logic;							-- signal for beq output from ID/EX
   signal s_MemToReg_fromIDEX 			: std_logic;		 					-- signal for MemtoReg output from ID/EX
   signal s_ALUOp_fromIDEX 				: std_logic_vector(3 downto 0); 		-- signal for ALUOp output from ID/EX
+  signal s_RegWr_fromIDEX               : std_logic;                            -- signal for RegWr input from ID/EX
   --THIS SIGNAL(vvv) IS ALWAYS SET TO 1
   --signal s_MemWr_fromIDEX : std_logic; 										-- signal for MemWr output from ID/EX
   signal s_ALUSrc_fromIDEX 				: std_logic;			 				-- signal for ALUSrc output from ID/EX
@@ -362,6 +376,7 @@ architecture structure of MIPS_Processor is
   signal s_PCPlus4_fromIDEX 			: std_logic_vector(31 downto 0);		-- signal for PC+4 output from ID/EX
   signal s_BranchAddr_fromIDEX 			: std_logic_vector(31 downto 0);		-- signal for Branch Address output from ID/EX
   signal s_JumpAddr_fromIDEX 			: std_logic_vector(31 downto 0);		-- signal for Jump Address output from ID/EX
+  signal s_WriteRegAddr_fromIDEX          : std_logic_vector(4 downto 0);        -- signal for the Write Address output from ID/EX
   
   --EX/MEM
   --inputs:
@@ -372,15 +387,18 @@ architecture structure of MIPS_Processor is
   signal s_PCPlus4_toEXMEM 				: std_logic_vector(31 downto 0);		-- signal for PC+4 input from ID/EX output
   signal s_ALUOut_toEXMEM 				: std_logic_vector(31 downto 0); 		-- signal for ALUOut input
   signal s_RegData2_toEXMEM 			: std_logic_vector(31 downto 0); 		-- signal for regOutB(reg_out2) from ID/EX
-	
+  signal s_RegWr_toEXMEM                : std_logic;                            -- signal for RegWr input from ID/EX
+  signal s_WriteRegAddr_toEXMEM         : std_logic_vector(4 downto 0);        -- signal for the Write Address input from ID/EX
   --outputs:
   signal s_jal_fromEXMEM 				: std_logic; 							-- signal for jal output from EX/MEM
   signal s_MemToReg_fromEXMEM 			: std_logic; 							-- signal for MemtoReg output from EX/MEM
+  signal s_RegWr_fromEXMEM              : std_logic;                            -- signal for RegWr input from EX/MEM
   --THIS SIGNAL(vvv) IS ALWAYS SET TO 1
   signal s_MemWr_fromEXMEM 				: std_logic; 							-- signal for MemWr output from EX/MEM
   signal s_PCPlus4_fromEXMEM 			: std_logic_vector(31 downto 0);		-- signal for PC+4 output from PC+4
   signal s_ALUOut_fromEXMEM 			: std_logic_vector(31 downto 0); 		-- signal for ALUOut output from EX/MEM
   signal s_RegData2_fromEXMEM 			: std_logic_vector(31 downto 0); 		-- signal for RegOut2 output from EX/MEM
+  signal s_WriteRegAddr_fromEXMEM       : std_logic_vector(4 downto 0);        -- signal for the Write Address output from EX/MEM
   
   --MEM/WB
   --inputs:
@@ -389,6 +407,8 @@ architecture structure of MIPS_Processor is
   signal s_PCPlus4_toMEMWB 				: std_logic_vector(31 downto 0); 		-- signal for PC+4 output from EX/MEM
   signal s_ReadDataMemWr_toMEMWB 		: std_logic_vector(31 downto 0); 		-- signal for Read_Data_MemWr from EX/MEM
   signal s_ALUOut_toMEMWB 				: std_logic_vector(31 downto 0); 		-- signal for ALUOut from EX/MEM
+  signal s_RegWr_toMEMWB                : std_logic;                            -- signal for RegWr output from EX/MEM
+  signal s_WriteRegAddr_toMEMWB         : std_logic_vector(4 downto 0);        -- signal for the Write Address output from EX/MEM
   
   --outputs:
   signal s_jal_fromMEMWB 				: std_logic;							-- signal for jal output from MEM/WB
@@ -396,7 +416,11 @@ architecture structure of MIPS_Processor is
   signal s_PCPlus4_fromMEMWB 			: std_logic_vector(31 downto 0); 		-- signal for PC+4 output from MEM/WB
   signal s_ReadDataMemWr_fromMEMWB 		: std_logic_vector(31 downto 0); 		-- signal for Read_Data_MemWr output from MEM/WB 
   signal s_ALUOut_fromMEMWB 			: std_logic_vector(31 downto 0); 		-- signal for ALUOut output from MEM/WB
+  signal s_RegWr_fromMEMWB              : std_logic;                            -- signal for RegWr output from MEM/WB
+  signal s_WriteRegAddr_fromMEMWB        : std_logic_vector(4 downto 0);        -- signal for the Write Address output from MEM/WB
   
+  --temporary signal talk with TA
+  signal s_newSignal : std_logic;
 begin
 
   -- TODO: This is required to be your final input to your instruction memory. This provides a feasible method to externally load the memory module which means that the synthesis tool must assume it knows nothing about the values stored in the instruction memory. If this is not included, much, if not all of the design is optimized out because the synthesis tool will believe the memory to be all zeros.
@@ -443,13 +467,13 @@ begin
     i_A => s_RegData1_fromIDEX,
     i_B => s_ALUSrcMuxOut,
     select_ALU => s_ALUOp_fromIDEX,
-    Zero => s_ALUZeroOut,
-    data_out => s_DMemAddr,
+    Zero => open,
+    data_out => s_ALUOut_toEXMEM,
     c_out =>s_ALUCarryOut
   );
   
   --s_DMemAddr <= s_ALUout;
-  oALUout <= s_DMemAddr; --Assign ALU output to oALUout for syntheis purposes
+  oALUout <= s_ALUOut_toEXMEM; --Assign ALU output to oALUout for syntheis purposes
 
   ALUSrc_Mux : MUX21_structN
   generic map(N => N)
@@ -483,7 +507,7 @@ begin
 	A => "11111",
 	B => s_RegWrAddrIntermed,
 	S => s_jal,
-	Q => s_RegWrAddr
+	Q => s_WriteRegAddr_toIDEX
   );
   
   PC : PC_reg --Changed to PC_reg instead of register_Nbits (11/4/2020)
@@ -504,7 +528,7 @@ begin
 		ALUControl 		=> s_ALUOp_toIDEX,
 		MemtoReg		=> s_MemToReg_toIDEX,
 		s_DMemWr		=> s_DMemWr, 						--leave it b/c DMemWr is hardcoded to 1
-		s_RegWr			=> s_RegWr,
+		s_RegWr			=> s_RegWr_toIDEX,
 		RegDst			=> s_RegDst,
 		Jump			=> s_j_toIDEX,
 		JumpReg			=> s_jr,
@@ -521,7 +545,7 @@ begin
   port map(
     clk => iCLK,
     rst => iRST,
-    reg_write_en => s_RegWr,
+    reg_write_en => s_RegWr_fromMEMWB,
     reg_write_dest => s_RegWrAddr,
     reg_write_data => s_RegWrData,
     reg_read_addrA => s_iMem_fromIFID(25 downto 21),
@@ -530,8 +554,8 @@ begin
     reg_out_dataB => s_regData2_toIDEX,
     reg2_out => v0
   );
-
-  s_DMemData <= s_RegFileReadAddress2;
+  s_newSignal <= '1' when s_RegData1_toIDEX = s_RegData1_toIDEX else '0'; --Rename signal and use it as zero comparing
+  --s_DMemData <= s_RegFileReadAddress2;
 
   AddFour : FA_struct
   generic map(N => N)
@@ -626,7 +650,7 @@ begin
   g_ifid: if_id
   port map(	i_CLK 				=>	iCLK,							-- Clock Input
 			i_RST_IFID 			=>	iRST,							-- Reset Input (Can be used as the Flush input)
-			i_WE_IFID 			=>	s_RegWr,						-- Write Enable Input
+			i_WE_IFID 			=>	'1',						-- Write Enable Input
 			-- these are specific to IF/ID --------------------------------------------------------
 			i_PCplusFOUR		=>	s_add4_toIFID,					-- PC+4(From PC)
 			i_MEM_IFID			=>	s_iMem_toIFID,					-- Instruction Memory(From IMEM)
@@ -646,7 +670,7 @@ begin
   g_idex: id_ex
   port map(	i_CLK 				=>	iCLK,							-- Clock Input
 			i_RST_IDEX 			=>	iRST,							-- Reset Input
-			i_WE_IDEX 			=>	s_RegWr,						-- Write Enable Input
+			i_WE_IDEX 			=>	'1',						-- Write Enable Input
 			--These are for just ID/EX ----------------------------------------------------------
 			i_JAL_IDEX 			=>	s_jal_toIDEX,					-- Jal Instruction
 			i_J_IDEX 			=>	s_Jump,							-- J Instruction
@@ -656,6 +680,7 @@ begin
 			i_MEMWR_IDEX		=>	'1',							-- MemWrite Instruction, don't need stall signal implementation
 			i_ALUOP_IDEX		=>	s_ALUOP,						-- ALU_OP Instruction
 			i_ALUSRC_IDEX		=>	s_ALUSrc,						-- ALU_Src Instruction
+			i_RegWr_IDEX        =>  s_RegWr_toIDEX,                  -- RegWr Instruction
 			i_BRANCH_ADDR_IDEX 	=>	s_BranchAdderOut,				-- Branch Addr.
 			i_JUMP_ADDR_IDEX 	=>	s_temp2,						-- Jump Addr.
 			i_SIGN_EXT_IDEX		=>	s_signExt_toIDEX,				-- PC+4 and SignExtend
@@ -663,6 +688,7 @@ begin
 			i_READ_DATA2_IDEX	=>	s_regData2_toIDEX,				-- Read Data 2
 			i_PC_PLUS_4_IDEX 	=>	s_PCPlus4_toIDEX,				-- PC+4
 			i_Instruction		=>	s_iMem_fromIFID,				-- Instruction Memory
+			i_WriteRegAddr_IDEX =>  s_WriteRegAddr_toIDEX,           -- Register Write Address
 			--Outputs:---------------------------------------------------------------------------
 			o_JAL_IDEX 			=>	s_jal_fromIDEX,					-- Jal Instruction
 			o_J_IDEX 			=>	s_j_fromIDEX,					-- J Instruction
@@ -672,69 +698,87 @@ begin
 			o_MEMWR_IDEX		=>	s_MemWr_toEXMEM,				-- MemWrite Instruction
 			o_ALUOP_IDEX		=>	s_ALUOp_fromIDEX,				-- ALU_OP Instruction
 			o_ALUSRC_IDEX		=>	s_ALUSrc_fromIDEX ,				-- ALU_Src Instruction
+			o_RegWr_IDEX        =>  s_RegWr_fromIDEX,                -- RegWr Instruction
 			o_BRANCH_ADDR_IDEX 	=>	s_BranchAddr_fromIDEX,			-- Branch Addr.
 			o_JUMP_ADDR_IDEX 	=>	s_JumpAddr_fromIDEX,			-- Jump Addr.
 			o_SIGN_EXT_IDEX		=>	s_signExt_fromIDEX,				-- PC+4 and SignExtend
 			o_READ_DATA1_IDEX	=>	s_RegData1_fromIDEX,			-- Read Data 1
 			o_READ_DATA2_IDEX	=>	s_RegData2_fromIDEX,			-- Read Data 2
 			o_PC_PLUS_4_IDEX 	=>	s_PCPlus4_fromIDEX,				-- PC+4
-			o_Instruction		=>	s_iMem_fromIDEX);				-- Instruction Memory(This 
+			o_Instruction		=>	s_iMem_fromIDEX,      			-- Instruction Memory(This 
+			o_WriteRegAddr_IDEX =>  s_WriteRegAddr_fromIDEX);        -- Register Write Address
   
     --make output signals from ID/EX match input signals to EX/MEM
 	s_jal_toEXMEM 		<= 	s_jal_fromIDEX;
 	s_MemToReg_toEXMEM 	<= 	s_MemToReg_fromIDEX;
 	s_PCPlus4_toEXMEM	<=	s_PCPlus4_fromIDEX;
 	s_RegData2_toEXMEM	<=	s_RegData1_fromIDEX;
+	s_RegWr_toEXMEM     <=  s_RegWr_fromIDEX;
+	s_WriteRegAddr_toEXMEM<=  s_WriteRegAddr_fromIDEX;
 	
   g_exmem: ex_mem
   port map(	i_CLK 				=>	iCLK,							-- Clock Input
 			i_RST_EXMEM			=>	iRST,							-- Reset Input
-			i_WE_EXMEM 			=>	s_RegWr,						-- Write Enable Input
+			i_WE_EXMEM 			=>	'1',						-- Write Enable Input
 			-- INPUT PORTS FOR EX-MEM--------------------------------------------------------------
 			i_JAL_EXMEM 		=>	s_jal_toEXMEM,					-- Jal Instruction
 			i_MEMTOREG_EXMEM	=>	s_MemToReg_toEXMEM,				-- MemToReg Instruction
 			i_MEMWR_EXMEM		=>	'1',							-- MemWrite Instruction
+			i_RegWr_EXMEM       =>  s_RegWr_toEXMEM,                  -- RegWr Instruction
 			i_PC_PLUS_4_EXMEM 	=>	s_PCPlus4_toEXMEM,				-- PC+4
 			i_ALU_OUT_EXMEM		=>	s_ALUOut_toEXMEM,				-- input fromt the ALU output
 			i_READ_DATA2_EXMEM	=>	s_RegData2_fromIDEX,			-- Read Data 2 
+			i_WriteRegAddr_EXMEM=>  s_WriteRegAddr_toEXMEM,           -- Register Write Address
+			
 			-- OUTPUT PORTS FOR EX-MEM-------------------------------------------------------------
 			o_JAL_EXMEM 		=>	s_jal_fromEXMEM,				-- Jal Instruction
 			o_MEMTOREG_EXMEM	=>	s_MemToReg_fromEXMEM,			-- MemToReg Instruction
 			o_MEMWR_EXMEM		=>	s_MemWr_fromEXMEM,				-- MemWrite Instruction
+			o_RegWr_EXMEM        =>  s_RegWr_fromEXMEM,                -- RegWr Instruction
 			o_PC_PLUS_4_EXMEM 	=>	s_PCPlus4_fromEXMEM,			-- PC+4
 			o_ALU_OUT_EXMEM		=>	s_ALUOut_fromEXMEM,				-- input fromt the ALU output
-			o_READ_DATA2_EXMEM	=>	s_RegData2_fromEXMEM);			-- Read Data 2
+			o_READ_DATA2_EXMEM	=>	s_RegData2_fromEXMEM,		-- Read Data 2
+			o_WriteRegAddr_EXMEM =>  s_WriteRegAddr_fromEXMEM);        -- Register Write Address
   
     --make output signals from EX/MEM match input signals to MEM/WB
 	s_jal_toMEMWB			<=	s_jal_fromEXMEM;
 	s_MemtoReg_toMEMWB		<=	s_MemToReg_fromEXMEM;
 	s_PCPlus4_toMEMWB		<=	s_PCPlus4_fromEXMEM;
-	s_ReadDataMemWr_toMEMWB	<=	s_RegData2_fromEXMEM;
+	s_ReadDataMemWr_toMEMWB	<=	s_DMemOut;
 	s_ALUOut_toMEMWB		<=	s_ALUOut_fromEXMEM;
+	s_RegWr_toMEMWB         <= s_RegWr_fromEXMEM;
+	s_WriteRegAddr_toMEMWB  <= s_WriteRegAddr_fromEXMEM;
 	
 	--make output signals from EX/MEM match input signals from Diagram
 	s_DMemWr 	<=	s_MemWR_fromEXMEM; 
 	s_DMemAddr	<=	s_ALUOut_fromEXMEM;
 	s_DMemData	<=	s_RegData2_fromEXMEM;
 	--Prep for MEM/WB:
-	s_ALUOut_toMEMWB <=	s_DMemOut;
+	s_ALUOut_toMEMWB <=	s_ALUOut_fromEXMEM;
 	
   g_memwb: mem_wb
   port map(	i_CLK 				=> 	iCLK,							-- Clock Input
 			i_RST_MEMWB			=>	iRST, 							-- Reset Input
-			i_WE_MEMWB 			=>	s_RegWr,						-- Write Enable Input
+			i_WE_MEMWB 			=>	'1',						-- Write Enable Input
 			-- INPUT PORTS FOR MEM-WB--------------------------------------------------------------
 			i_JAL_MEMWB 		=>	s_jal_toMEMWB,					-- Jal Instruction
 			i_MEMTOREG_MEMWB 	=>	s_MemtoReg_toMEMWB,				-- MemToReg Instruction
+			i_RegWr_MEMWB       =>  s_RegWr_toMEMWB,                  -- RegWr Instruction
 			i_PC_PLUS_4_MEMWB 	=>	s_PCPlus4_toMEMWB,				-- PC+4
 			i_MEMWR_READ_MEMWB 	=>	s_ReadDataMemWr_toMEMWB,		-- input fromt the ALU output
 			i_ALU_OUT_MEMWB		=>	s_ALUOut_toMEMWB,				-- Read Data 2
+			i_WriteRegAddr_MEMWB=>  s_WriteRegAddr_toMEMWB,           -- Register Write Address
 			-- OUTPUT PORTS FOR MEM-WB-------------------------------------------------------------
 			o_JAL_MEMWB 		=> 	s_jal_fromMEMWB,				-- Jal Instruction
 			o_MEMTOREG_MEMWB 	=>	s_MemtoReg_fromMEMWB,			-- MemToReg Instruction
+			o_RegWr_MEMWB       =>  s_RegWr_fromMEMWB,                -- RegWr Instruction
 			o_PC_PLUS_4_MEMWB 	=>	s_PCPlus4_fromMEMWB,			-- PC+4
 			o_MEMWR_READ_MEMWB 	=>	s_ReadDataMemWr_fromMEMWB,		-- input fromt the ALU output
-			o_ALU_OUT_MEMWB		=>	s_ALUOut_fromMEMWB);			-- Read Data 
+			o_ALU_OUT_MEMWB		=>	s_ALUOut_fromMEMWB,			-- Read Data 
+			o_WriteRegAddr_MEMWB=>  s_WriteRegAddr_fromMEMWB);
 			
+	--make output signals from MEM_WB match input signals from Diagram
+	s_RegWr <= s_RegWr_fromMEMWB;
+	s_RegWrAddr <= s_WriteRegAddr_fromMEMWB;
   
 end structure;

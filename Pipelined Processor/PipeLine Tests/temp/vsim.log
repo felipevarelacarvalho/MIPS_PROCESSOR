@@ -1,0 +1,70 @@
+Reading pref.tcl
+
+# 2020.2
+
+# vsim -c tb_SimplifiedMIPSProcessor -do "modelsim_framework2.do" 
+# Start time: 11:14:02 on Nov 19,2020
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: src/MIPS_Processor.vhd(691): (vopt-1549) At instance g_idex the actual expression and the port 'i_WriteRegAddr_IDEX' of component 'work.MIPS_Processor(structure).id_ex' have different sizes:  ([5,32]).
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/g_idex
+# ** Warning: src/MIPS_Processor.vhd(709): (vopt-1549) At instance g_idex the actual expression and the port 'o_WriteRegAddr_IDEX' of component 'work.MIPS_Processor(structure).id_ex' have different sizes:  ([5,32]).
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/g_idex
+# ** Warning: src/MIPS_Processor.vhd(731): (vopt-1549) At instance g_exmem the actual expression and the port 'i_WriteRegAddr_EXMEM' of component 'work.MIPS_Processor(structure).ex_mem' have different sizes:  ([5,32]).
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/g_exmem
+# ** Warning: src/MIPS_Processor.vhd(741): (vopt-1549) At instance g_exmem the actual expression and the port 'o_WriteRegAddr_EXMEM' of component 'work.MIPS_Processor(structure).ex_mem' have different sizes:  ([5,32]).
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/g_exmem
+# ** Warning: src/MIPS_Processor.vhd(770): (vopt-1549) At instance g_memwb the actual expression and the port 'i_WriteRegAddr_MEMWB' of component 'work.MIPS_Processor(structure).mem_wb' have different sizes:  ([5,32]).
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/g_memwb
+# ** Warning: src/MIPS_Processor.vhd(778): (vopt-1549) At instance g_memwb the actual expression and the port 'o_WriteRegAddr_MEMWB' of component 'work.MIPS_Processor(structure).mem_wb' have different sizes:  ([5,32]).
+#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/g_memwb
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=6.
+# //  ModelSim SE-64 2020.2 Apr 19 2020
+# //
+# //  Copyright 1991-2020 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_textio(body)
+# Loading std.env(body)
+# Loading work.tb_simplifiedmipsprocessor(mixed)#1
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading work.mips_processor(structure)#1
+# Loading work.mux21_structn(structure)#1
+# Loading work.mips_alu(behaviour)#1
+# Loading work.barrelshifter(structural)#1
+# Loading work.onebitalu(dataflow)#1
+# Loading work.regfile(behavior)#1
+# Loading work.fa_struct(structure)#1
+# Loading work.id_ex(structure)#1
+# do modelsim_framework2.do
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/RegisterFile/g_mux32to1_2
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/RegisterFile/g_mux32to1_1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/DMem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IMem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 80 ns  Iteration: 4  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IMem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 140 ns  Iteration: 4  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IMem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 200 ns  Iteration: 4  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IMem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 260 ns  Iteration: 4  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IMem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 320 ns  Iteration: 4  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IMem
+# End time: 11:14:10 on Nov 19,2020, Elapsed time: 0:00:08
+# Errors: 0, Warnings: 15

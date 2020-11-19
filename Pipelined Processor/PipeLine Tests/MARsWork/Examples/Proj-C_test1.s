@@ -8,8 +8,17 @@
 # code/instruction section
 .text
 
-addi 		$7, $0, 0x10010000	# initialize dmem
-li 			$sp, 0x7fffeffc  	# set the stack pointer
+lui 		$7, 0x1001      # initialize dmem
+
+
+lui         $sp, 0x7fff         #li 			$sp, 0x7fffeffc  	# set the stack pointer
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+ori         $sp, $sp,0xeffc
+
+
 
 addi  		$1,  $0,  3 		# Place “3” in $1
 addi  		$2,  $0,  1 		# Place “1” in $2
@@ -77,7 +86,7 @@ j main 							# Jumps to main
 add 		$26, $0, 1			# need to atleast be doing something
 
 main:    						#assume value a is already in $t0, b in $t1
-li 			$sp, 0x7fffeffc  	#set the stack pointer 
+#li 			$sp, 0x7fffeffc  	#set the stack pointer 
 addi 		$t0, $0, 2			#starts temp
 addi 		$t1 ,$0, 3			#second temp
 
