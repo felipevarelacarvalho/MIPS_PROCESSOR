@@ -77,15 +77,17 @@ srav		$25, $21, $19		# Place "1" or “b001”	in $25
 bne  		$18, $19, part1		# Since branch is not equal from _ and _, it goes to part1
 
 part1:
-
+addi		$0,  $0,  0			# Place stall
 beq	 		$16, $17, part2		# Since branch is equal from _ and _, it goes to part2
 
 part2:
+addi		$0,  $0,  0			# Place stall
 
 j main 							# Jumps to main
 add 		$26, $0, 1			# need to atleast be doing something
 
 main:    						#assume value a is already in $t0, b in $t1
+addi		$0,  $0,  0			# Place stall
 #li 			$sp, 0x7fffeffc  	#set the stack pointer 
 addi 		$t0, $0, 2			#starts temp
 addi 		$t1 ,$0, 3			#second temp
@@ -105,6 +107,7 @@ addi  		$2,  $0,  10      	# Place "10" in $v0 to signal an "exit" or "halt"
 syscall                 		# Actually cause the halt
 
 addthem:
+addi		$0,  $0,  0			# Place stall
 addi 		$sp,$sp,-4     		# Moving Stack pointer
 
 addi		$0,  $0,  0			# Place stall
@@ -130,7 +133,9 @@ add 		$v0,$0,$t0      	# Result
 
 lw 			$t0, 0($sp)      	# Load previous value
 addi 		$sp,$sp,4      	    # Moving Stack pointer 
+
 jr 			$ra              	# return (Copy $ra to PC)
+addi		$0,  $0,  0			# Place stall
 
 
 addi  $2,  $0,  10              # Place "10" in $v0 to signal an "exit" or "halt"

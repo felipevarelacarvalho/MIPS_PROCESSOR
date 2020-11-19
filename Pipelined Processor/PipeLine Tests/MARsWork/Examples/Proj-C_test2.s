@@ -112,6 +112,7 @@ sub $s5, $s4, $s0 # this is arr.length-1-i
 #Outer For loop: Moving through the array
 	
 OuterForLoop:
+	addi		$0,  $0,  0			# Place stall
 	# for(i=0;i<length -1;i++){Inner Loop}
 	# so check bge i, length-1, BRANCH
 	# if this is false we should branch to the end of the program
@@ -133,6 +134,7 @@ OuterForLoop:
 	#Inner For loop: To Swap Or Not To Swap?
 	
 	InnerForLoop:
+		addi		$0,  $0,  0			# Place stall
 		# for(j=0; j < length-1-i;j++){CheckForSwap, Swap if Necessary}
 		# so check bge j, length-1-i, BRANCH
 		# if this is false we should branch to the exit of the inner loop to prep to go back to the outer loop
@@ -197,6 +199,7 @@ OuterForLoop:
 		
 		#Swap: Swaps the elements $t0 and $t1 using a temp $
 		Swap:
+			addi		$0,  $0,  0			# Place stall
 			add $t9, $0, $t0				# int temp = &arr[j];
 			add $t0, $0, $t1				# &arr[j] = &arr[j+1];
 			
@@ -208,6 +211,7 @@ OuterForLoop:
 		
 		#Update: Prepare values to jump back into InnerForLoop, Store Words Here
 		Update:
+			addi		$0,  $0,  0			# Place stall
 			#Store back into Memory
 			sw $t0, 0($t3) #Store arr[j] in Memory
 			sw $t1, 4($t3) #Store arr[j+1] in Memory
@@ -217,10 +221,12 @@ OuterForLoop:
 		
 	#ExitInnerLoop: Preps to jump back into OuterForLoop
 	ExitInnerLoop:
+	addi		$0,  $0,  0			# Place stall
 	addi $s0, $s0, 1 # i++;
 	j OuterForLoop #Jump back into Outer Loop
 	
 #Exit: Ends the BubbleSort
 Exit:
+	addi		$0,  $0,  0			# Place stall
 	li $v0, 10
    	syscall
