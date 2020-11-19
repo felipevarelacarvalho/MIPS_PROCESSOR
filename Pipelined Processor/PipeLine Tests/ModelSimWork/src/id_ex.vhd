@@ -38,8 +38,8 @@ port(i_CLK 				: in std_logic; 						-- Clock Input
 	 o_SIGN_EXT_IDEX	: out std_logic_vector(N-1 downto 0);	-- PC+4 and SignExtend
 	 o_READ_DATA1_IDEX	: out std_logic_vector(N-1 downto 0);	-- Read Data 1
 	 o_READ_DATA2_IDEX	: out std_logic_vector(N-1 downto 0);	-- Read Data 2
-	 o_PC_PLUS_4_IDEX 	: out std_logic_vector(N-1 downto 0));	-- PC+4
-	 o_Instruction      : out std_logic_vector(N-1 downto 0);   --intruction to be passed to the ALU
+	 o_PC_PLUS_4_IDEX 	: out std_logic_vector(N-1 downto 0);	-- PC+4
+	 o_Instruction      : out std_logic_vector(N-1 downto 0));   --intruction to be passed to the ALU
 
 end id_ex;
 
