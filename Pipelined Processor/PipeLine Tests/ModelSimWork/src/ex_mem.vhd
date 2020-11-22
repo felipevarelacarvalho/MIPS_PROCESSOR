@@ -8,7 +8,6 @@ generic(N : integer := 32);
 port(i_CLK 			: in std_logic; 						-- Clock Input
 	 i_RST_EXMEM	: in std_logic; 						-- Reset Input
 	 i_WE_EXMEM     : in std_logic; 						-- Write Enable Input
-	 o_Q_EXMEM 		: out std_logic_vector(N-1 downto 0); 	-- Data Value Output
 	 -- INPUT PORTS FOR EX-MEM
 	 i_JAL_EXMEM 		: in std_logic;							-- Jal Instruction
 	 i_MEMTOREG_EXMEM	: in std_logic;							-- MemToReg Instruction

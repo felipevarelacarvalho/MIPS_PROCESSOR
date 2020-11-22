@@ -8,23 +8,22 @@ generic(N : integer := 32);
 port(i_CLK 				: in std_logic; 						-- Clock Input
 	 i_RST_MEMWB		: in std_logic; 						-- Reset Input
 	 i_WE_MEMWB 		: in std_logic; 						-- Write Enable Input
-	 o_Q_MEMWB 			: out std_logic_vector(N-1 downto 0); 	-- Data Value Output
 	 -- INPUT PORTS FOR MEM-WB
 	 i_JAL_MEMWB 		: in std_logic;							-- Jal Instruction
 	 i_MEMTOREG_MEMWB	: in std_logic;							-- MemToReg Instruction
 	 i_RegWr_MEMWB      : in std_logic;							-- Register Write to go to Write phase (Added 11/19/20)
 	 i_PC_PLUS_4_MEMWB 	: in std_logic_vector(N-1 downto 0);	-- PC+4
-	 i_MEMWR_READ_MEMWB	: in std_logic_vector(N-1 downto 0);	-- input fromt the ALU output
-	 i_ALU_OUT_MEMWB	: in std_logic_vector(N-1 downto 0);	-- Read Data 2
+	 i_MEM_READ_MEMWB	: in std_logic_vector(N-1 downto 0);	-- Output from DMEM
+	 i_ALU_OUT_MEMWB	: in std_logic_vector(N-1 downto 0);	-- Output from ALU
 	 i_WriteRegAddr_MEMWB: in std_logic_vector(4 downto 0);   --Write register address
 	 -- OUTPUT PORTS FOR MEM-WB
 	 o_JAL_MEMWB 		: out std_logic;							-- Jal Instruction
 	 o_MEMTOREG_MEMWB	: out std_logic;							-- MemToReg Instruction
 	 o_RegWr_MEMWB      : out std_logic;							-- Register Write to go to Write phase (Added 11/19/20
 	 o_PC_PLUS_4_MEMWB 	: out std_logic_vector(N-1 downto 0);	-- PC+4
-	 o_MEMWR_READ_MEMWB	: out std_logic_vector(N-1 downto 0);	-- input fromt the ALU output
-	 o_ALU_OUT_MEMWB	: out std_logic_vector(N-1 downto 0);	-- Read Data 2
-	 o_WriteRegAddr_MEMWB: out std_logic_vector(4 downto 0));   --Write register address
+	 o_MEM_READ_MEMWB	: out std_logic_vector(N-1 downto 0);	-- Output from DMEM
+	 o_ALU_OUT_MEMWB	: out std_logic_vector(N-1 downto 0);	-- Output from ALU
+	 o_WriteRegAddr_MEMWB: out std_logic_vector(4 downto 0));    --Write register address
 end mem_wb;
 
 architecture structure of mem_wb is
@@ -53,13 +52,13 @@ component Register_1bit is
 begin 
 
 -- READ_DATA2
-	mem_wb_memwr_read_data : Register_Nbits
+	mem_wb_mem_read_data : Register_Nbits
 	generic MAP(N => 32)
 	port MAP(i_CLK 	=> i_CLK,
 			 i_RST 	=> i_RST_MEMWB,
 			 i_WE 	=> i_WE_MEMWB, 
-			 i_D 	=> i_MEMWR_READ_MEMWB,
-			 o_Q 	=> o_MEMWR_READ_MEMWB
+			 i_D 	=> i_MEM_READ_MEMWB,
+			 o_Q 	=> o_MEM_READ_MEMWB
 	);
 
 -- ALU_OUT_INPUT
