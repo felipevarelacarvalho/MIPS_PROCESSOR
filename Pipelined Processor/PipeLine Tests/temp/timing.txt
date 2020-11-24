@@ -1,0 +1,113 @@
+
+#
+# CprE 381 toolflow Timing dump
+#
+
+FMax: 46.35mhz Clk Constraint: 20.00ns Slack: -1.57ns
+
+The path is given below
+
+ ===================================================================
+ From Node    : id_ex:IDEX|Register_1bit:id_ex_ALUSrc_reg|s_Q
+ To Node      : ex_mem:EXMEM|Register_Nbits:ex_mem_alu_OUT_IN|s_Q[22]
+ Launch Clock : iCLK
+ Latch Clock  : iCLK
+ Data Arrival Path:
+ Total (ns)  Incr (ns)     Type  Element
+ ==========  ========= ==  ====  ===================================
+      0.000      0.000           launch edge time
+      3.087      3.087  R        clock network delay
+      3.319      0.232     uTco  id_ex:IDEX|Register_1bit:id_ex_ALUSrc_reg|s_Q
+      3.319      0.000 FF  CELL  IDEX|id_ex_ALUSrc_reg|s_Q|q
+      4.121      0.802 FF    IC  ALUSrc_Mux|\G1:3:g_OR1|o_F~0|datac
+      4.381      0.260 FR  CELL  ALUSrc_Mux|\G1:3:g_OR1|o_F~0|combout
+      5.828      1.447 RR    IC  ALU|g_ALU|\G1:3:ALUs|oC~0|dataa
+      6.224      0.396 RF  CELL  ALU|g_ALU|\G1:3:ALUs|oC~0|combout
+      6.525      0.301 FF    IC  ALU|g_ALU|\G1:4:ALUs|oC~0|dataa
+      6.929      0.404 FF  CELL  ALU|g_ALU|\G1:4:ALUs|oC~0|combout
+      7.326      0.397 FF    IC  ALU|g_ALU|\G1:5:ALUs|oC~0|datad
+      7.451      0.125 FF  CELL  ALU|g_ALU|\G1:5:ALUs|oC~0|combout
+      7.842      0.391 FF    IC  ALU|g_ALU|\G1:6:ALUs|oC~0|datad
+      7.967      0.125 FF  CELL  ALU|g_ALU|\G1:6:ALUs|oC~0|combout
+      8.216      0.249 FF    IC  ALU|g_ALU|\G1:7:ALUs|oC~0|datad
+      8.341      0.125 FF  CELL  ALU|g_ALU|\G1:7:ALUs|oC~0|combout
+      8.590      0.249 FF    IC  ALU|g_ALU|\G1:8:ALUs|oC~0|datad
+      8.715      0.125 FF  CELL  ALU|g_ALU|\G1:8:ALUs|oC~0|combout
+      8.965      0.250 FF    IC  ALU|g_ALU|\G1:9:ALUs|oC~0|datad
+      9.090      0.125 FF  CELL  ALU|g_ALU|\G1:9:ALUs|oC~0|combout
+      9.340      0.250 FF    IC  ALU|g_ALU|\G1:10:ALUs|oC~0|datad
+      9.465      0.125 FF  CELL  ALU|g_ALU|\G1:10:ALUs|oC~0|combout
+      9.716      0.251 FF    IC  ALU|g_ALU|\G1:11:ALUs|oC~0|datad
+      9.841      0.125 FF  CELL  ALU|g_ALU|\G1:11:ALUs|oC~0|combout
+     10.099      0.258 FF    IC  ALU|g_ALU|\G1:12:ALUs|oC~0|datac
+     10.380      0.281 FF  CELL  ALU|g_ALU|\G1:12:ALUs|oC~0|combout
+     10.634      0.254 FF    IC  ALU|g_ALU|\G1:13:ALUs|oC~0|datac
+     10.915      0.281 FF  CELL  ALU|g_ALU|\G1:13:ALUs|oC~0|combout
+     11.165      0.250 FF    IC  ALU|g_ALU|\G1:14:ALUs|oC~0|datad
+     11.290      0.125 FF  CELL  ALU|g_ALU|\G1:14:ALUs|oC~0|combout
+     11.668      0.378 FF    IC  ALU|g_ALU|\G1:15:ALUs|oC~0|datad
+     11.793      0.125 FF  CELL  ALU|g_ALU|\G1:15:ALUs|oC~0|combout
+     12.045      0.252 FF    IC  ALU|g_ALU|\G1:16:ALUs|oC~0|datad
+     12.170      0.125 FF  CELL  ALU|g_ALU|\G1:16:ALUs|oC~0|combout
+     12.418      0.248 FF    IC  ALU|g_ALU|\G1:17:ALUs|oC~0|datad
+     12.543      0.125 FF  CELL  ALU|g_ALU|\G1:17:ALUs|oC~0|combout
+     12.791      0.248 FF    IC  ALU|g_ALU|\G1:18:ALUs|oC~0|datad
+     12.916      0.125 FF  CELL  ALU|g_ALU|\G1:18:ALUs|oC~0|combout
+     13.165      0.249 FF    IC  ALU|g_ALU|\G1:19:ALUs|oC~0|datad
+     13.290      0.125 FF  CELL  ALU|g_ALU|\G1:19:ALUs|oC~0|combout
+     13.541      0.251 FF    IC  ALU|g_ALU|\G1:20:ALUs|oC~0|datad
+     13.666      0.125 FF  CELL  ALU|g_ALU|\G1:20:ALUs|oC~0|combout
+     13.923      0.257 FF    IC  ALU|g_ALU|\G1:21:ALUs|oC~0|datac
+     14.204      0.281 FF  CELL  ALU|g_ALU|\G1:21:ALUs|oC~0|combout
+     14.460      0.256 FF    IC  ALU|g_ALU|\G1:22:ALUs|oC~0|datac
+     14.741      0.281 FF  CELL  ALU|g_ALU|\G1:22:ALUs|oC~0|combout
+     14.991      0.250 FF    IC  ALU|g_ALU|\G1:23:ALUs|oC~0|datad
+     15.116      0.125 FF  CELL  ALU|g_ALU|\G1:23:ALUs|oC~0|combout
+     15.365      0.249 FF    IC  ALU|g_ALU|\G1:24:ALUs|oC~0|datad
+     15.490      0.125 FF  CELL  ALU|g_ALU|\G1:24:ALUs|oC~0|combout
+     15.745      0.255 FF    IC  ALU|g_ALU|\G1:25:ALUs|oC~0|datac
+     16.026      0.281 FF  CELL  ALU|g_ALU|\G1:25:ALUs|oC~0|combout
+     16.276      0.250 FF    IC  ALU|g_ALU|\G1:26:ALUs|oC~0|datad
+     16.401      0.125 FF  CELL  ALU|g_ALU|\G1:26:ALUs|oC~0|combout
+     16.651      0.250 FF    IC  ALU|g_ALU|\G1:27:ALUs|oC~0|datad
+     16.776      0.125 FF  CELL  ALU|g_ALU|\G1:27:ALUs|oC~0|combout
+     17.026      0.250 FF    IC  ALU|g_ALU|\G1:28:ALUs|oC~0|datad
+     17.151      0.125 FF  CELL  ALU|g_ALU|\G1:28:ALUs|oC~0|combout
+     17.409      0.258 FF    IC  ALU|g_ALU|\G1:29:ALUs|oC~0|datac
+     17.690      0.281 FF  CELL  ALU|g_ALU|\G1:29:ALUs|oC~0|combout
+     17.945      0.255 FF    IC  ALU|g_ALU|\G1:30:ALUs|oC~0|datac
+     18.226      0.281 FF  CELL  ALU|g_ALU|\G1:30:ALUs|oC~0|combout
+     18.615      0.389 FF    IC  ALU|g_ALU|A32|oOut~7|datad
+     18.765      0.150 FR  CELL  ALU|g_ALU|A32|oOut~7|combout
+     18.969      0.204 RR    IC  ALU|g_ALU|A32|oOut~8|datad
+     19.108      0.139 RF  CELL  ALU|g_ALU|A32|oOut~8|combout
+     19.369      0.261 FF    IC  ALU|g_BarrelShifter0|data_out~3|datad
+     19.494      0.125 FF  CELL  ALU|g_BarrelShifter0|data_out~3|combout
+     19.720      0.226 FF    IC  ALU|g_BarrelShifter0|data_out~2|datad
+     19.870      0.150 FR  CELL  ALU|g_BarrelShifter0|data_out~2|combout
+     20.915      1.045 RR    IC  ALU|g_BarrelShifter0|temp[29]~17|datad
+     21.054      0.139 RF  CELL  ALU|g_BarrelShifter0|temp[29]~17|combout
+     21.314      0.260 FF    IC  ALU|g_BarrelShifter0|\GEN_2ndMuxRow:26:First30Muxes:M0_30|Q~1|datac
+     21.595      0.281 FF  CELL  ALU|g_BarrelShifter0|\GEN_2ndMuxRow:26:First30Muxes:M0_30|Q~1|combout
+     22.326      0.731 FF    IC  ALU|g_BarrelShifter0|\GEN_4thMuxRow:22:First30Muxes:M0_30|Q~2|datac
+     22.606      0.280 FF  CELL  ALU|g_BarrelShifter0|\GEN_4thMuxRow:22:First30Muxes:M0_30|Q~2|combout
+     22.839      0.233 FF    IC  ALU|g_BarrelShifter0|\GEN_4thMuxRow:22:First30Muxes:M0_30|Q~4|datac
+     23.120      0.281 FF  CELL  ALU|g_BarrelShifter0|\GEN_4thMuxRow:22:First30Muxes:M0_30|Q~4|combout
+     24.094      0.974 FF    IC  ALU|data_out[22]~58|datad
+     24.244      0.150 FR  CELL  ALU|data_out[22]~58|combout
+     24.479      0.235 RR    IC  ALU|data_out[22]~60|datab
+     24.897      0.418 RR  CELL  ALU|data_out[22]~60|combout
+     24.897      0.000 RR    IC  EXMEM|ex_mem_alu_OUT_IN|s_Q[22]|d
+     24.984      0.087 RR  CELL  ex_mem:EXMEM|Register_Nbits:ex_mem_alu_OUT_IN|s_Q[22]
+ Data Required Path:
+ Total (ns)  Incr (ns)     Type  Element
+ ==========  ========= ==  ====  ===================================
+     20.000     20.000           latch edge time
+     23.405      3.405  R        clock network delay
+     23.413      0.008           clock pessimism removed
+     23.393     -0.020           clock uncertainty
+     23.411      0.018     uTsu  ex_mem:EXMEM|Register_Nbits:ex_mem_alu_OUT_IN|s_Q[22]
+ Data Arrival Time  :    24.984
+ Data Required Time :    23.411
+ Slack              :    -1.573 (VIOLATED)
+ ===================================================================

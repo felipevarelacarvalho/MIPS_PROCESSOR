@@ -250,7 +250,7 @@ architecture structure of MIPS_Processor is
       i_PC_PLUS_4_MEMWB 	: in std_logic_vector(N-1 downto 0);	-- PC+4
       i_MEM_READ_MEMWB	: in std_logic_vector(N-1 downto 0);	-- input fromt the ALU output
       i_ALU_OUT_MEMWB		: in std_logic_vector(N-1 downto 0);	-- Read Data 2
-	    i_WriteRegAddr_MEMWB : in std_logic_vector(N-1 downto 0);    --Write register address
+	    i_WriteRegAddr_MEMWB : in std_logic_vector(4 downto 0);    --Write register address
       -- OUTPUT PORTS FOR MEM-WB
       o_JAL_MEMWB 			: out std_logic;						-- Jal Instruction
       o_MEMTOREG_MEMWB		: out std_logic;						-- MemToReg Instruction
@@ -258,7 +258,7 @@ architecture structure of MIPS_Processor is
       o_PC_PLUS_4_MEMWB 	: out std_logic_vector(N-1 downto 0);	-- PC+4
       o_MEM_READ_MEMWB	: out std_logic_vector(N-1 downto 0);	-- input fromt the ALU output
       o_ALU_OUT_MEMWB		: out std_logic_vector(N-1 downto 0);	-- Read Data 2
-	    o_WriteRegAddr_MEMWB : out std_logic_vector(N-1 downto 0));  --Write register address
+	    o_WriteRegAddr_MEMWB : out std_logic_vector(4 downto 0));  --Write register address
   end component;
 
   -------------------------------------------------------------------------------------------------------
@@ -654,7 +654,7 @@ begin
     i_PC_PLUS_4_MEMWB 	 => s_PCPlusFour_from_EXMEM,
     i_MEM_READ_MEMWB	 => s_DMemOut,
     i_ALU_OUT_MEMWB	     => s_ALUOut_from_EXMEM,
-    i_WriteRegAddr_MEMWB => s_RegWrAddr_from_EXMEM,
+    i_WriteRegAddr_MEMWB => s_RegWrAddr_from_EXMEM, -- may be too small
     -------------------------------------------- 
     o_JAL_MEMWB 		     => s_JAL_from_MEMWB,
     o_MEMTOREG_MEMWB		 => s_MemToReg_from_MEMWB,

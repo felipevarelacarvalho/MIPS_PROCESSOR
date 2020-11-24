@@ -1,11 +1,6 @@
 # vsim -c tb_SimplifiedMIPSProcessor -do "modelsim_framework2.do" 
-# Start time: 13:23:45 on Nov 24,2020
+# Start time: 13:48:34 on Nov 24,2020
 # ** Note: (vsim-3812) Design is being optimized...
-# ** Warning: src/MIPS_Processor.vhd(657): (vopt-1549) At instance MEMWB the actual expression and the port 'i_WriteRegAddr_MEMWB' of component 'work.MIPS_Processor(structure).mem_wb' have different sizes:  ([5,32]).
-#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/MEMWB
-# ** Warning: src/MIPS_Processor.vhd(665): (vopt-1549) At instance MEMWB the actual expression and the port 'o_WriteRegAddr_MEMWB' of component 'work.MIPS_Processor(structure).mem_wb' have different sizes:  ([5,32]).
-#         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/MEMWB
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=2.
 # //  ModelSim SE-64 2020.2 Apr 19 2020
 # //
 # //  Copyright 1991-2020 Mentor Graphics Corporation
@@ -50,5 +45,5 @@
 #    Time: 1960 ns  Iteration: 1  Instance: /tb_simplifiedmipsprocessor
 # Break in Process P_DUMP_STATE at U:/MIPS_PROCESSOR/Pipelined Processor/PipeLine Tests/ModelSimWork/src/tb_SimplifiedMIPSProcessor.vhd line 140
 # Stopped at U:/MIPS_PROCESSOR/Pipelined Processor/PipeLine Tests/ModelSimWork/src/tb_SimplifiedMIPSProcessor.vhd line 140
-# End time: 13:23:50 on Nov 24,2020, Elapsed time: 0:00:05
-# Errors: 0, Warnings: 6
+# End time: 13:48:39 on Nov 24,2020, Elapsed time: 0:00:05
+# Errors: 0, Warnings: 4

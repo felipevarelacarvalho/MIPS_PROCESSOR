@@ -1,5 +1,5 @@
 Assembler report for toolflow
-Wed Nov 04 15:17:55 2020
+Tue Nov 24 13:41:51 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Standard Edition
 
 
@@ -10,7 +10,7 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Standard Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/QuartusWork/output_files/toolflow.sof
+  5. Assembler Device Options: U:/MIPS_PROCESSOR/Pipelined Processor/PipeLine Tests/QuartusWork/output_files/toolflow.sof
   6. Assembler Messages
 
 
@@ -38,7 +38,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Wed Nov 04 15:17:55 2020 ;
+; Assembler Status      ; Successful - Tue Nov 24 13:41:51 2020 ;
 ; Revision Name         ; toolflow                              ;
 ; Top-level Entity Name ; MIPS_Processor                        ;
 ; Family                ; Cyclone IV E                          ;
@@ -79,23 +79,23 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------------------------------------------------------------+----------------+----------------+
 
 
-+-------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                       ;
-+-------------------------------------------------------------------------------------------------+
-; File Name                                                                                       ;
-+-------------------------------------------------------------------------------------------------+
-; U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/QuartusWork/output_files/toolflow.sof ;
-+-------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                  ;
++--------------------------------------------------------------------------------------------+
+; File Name                                                                                  ;
++--------------------------------------------------------------------------------------------+
+; U:/MIPS_PROCESSOR/Pipelined Processor/PipeLine Tests/QuartusWork/output_files/toolflow.sof ;
++--------------------------------------------------------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: U:/MIPS_PROCESSOR/Processor_Test/cpre381-toolflow-release/QuartusWork/output_files/toolflow.sof ;
-+----------------+----------------------------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                                                  ;
-+----------------+----------------------------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x03FADC4D                                                                                               ;
-; Checksum       ; 0x03FADC4D                                                                                               ;
-+----------------+----------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: U:/MIPS_PROCESSOR/Pipelined Processor/PipeLine Tests/QuartusWork/output_files/toolflow.sof ;
++----------------+-----------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                             ;
++----------------+-----------------------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x0074B309                                                                                          ;
+; Checksum       ; 0x0074B309                                                                                          ;
++----------------+-----------------------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -118,16 +118,16 @@ Info: Running Quartus Prime Assembler
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details, at
     Info: https://fpgasoftware.intel.com/eula.
-    Info: Processing started: Wed Nov 04 15:17:47 2020
+    Info: Processing started: Tue Nov 24 13:41:47 2020
 Info: Command: quartus_asm --read_settings_files=on --write_settings_files=off toolflow -c toolflow
 Info (125069): Default assignment values were changed in the current version of the Quartus Prime software -- changes to default assignments values are contained in file c:/intelfpga/20.1/quartus/bin64/assignment_defaults.qdf
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4973 megabytes
-    Info: Processing ended: Wed Nov 04 15:17:56 2020
-    Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Peak virtual memory: 4720 megabytes
+    Info: Processing ended: Tue Nov 24 13:41:51 2020
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:03
 
 
