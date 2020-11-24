@@ -3,7 +3,7 @@ Reading pref.tcl
 # 2020.2
 
 # vsim -c tb_SimplifiedMIPSProcessor -do "modelsim_framework2.do" 
-# Start time: 22:41:10 on Nov 23,2020
+# Start time: 13:23:45 on Nov 24,2020
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: src/MIPS_Processor.vhd(657): (vopt-1549) At instance MEMWB the actual expression and the port 'i_WriteRegAddr_MEMWB' of component 'work.MIPS_Processor(structure).mem_wb' have different sizes:  ([5,32]).
 #         Region: /tb_SimplifiedMIPSProcessor/MySimplifiedMIPSProcess/MEMWB
@@ -48,5 +48,11 @@ Reading pref.tcl
 #    Time: 0 ns  Iteration: 0  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/DMem
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ns  Iteration: 0  Instance: /tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IMem
-# End time: 22:42:24 on Nov 23,2020, Elapsed time: 0:01:14
+# ** Note: Data structure takes 17867192 bytes of memory
+#          Process time 0.11 seconds
+#          stop
+#    Time: 1960 ns  Iteration: 1  Instance: /tb_simplifiedmipsprocessor
+# Break in Process P_DUMP_STATE at U:/MIPS_PROCESSOR/Pipelined Processor/PipeLine Tests/ModelSimWork/src/tb_SimplifiedMIPSProcessor.vhd line 140
+# Stopped at U:/MIPS_PROCESSOR/Pipelined Processor/PipeLine Tests/ModelSimWork/src/tb_SimplifiedMIPSProcessor.vhd line 140
+# End time: 13:23:50 on Nov 24,2020, Elapsed time: 0:00:05
 # Errors: 0, Warnings: 6

@@ -60,8 +60,10 @@ ori			$15, $8, 3			# Place “7”	in $15
 
 slt			$16, $9, $8			# Place “1”	in $16
 slti		$17, $7, 2			# Place “1”	in $17 
-sltiu		$18, $13, 3			# Place “0”	in $18
-sltu		$19, $12, $11		# Place “1”	in $19
+#sltiu		$18, $13, 3			# Place “0”	in $18
+#sltu		$19, $12, $11		# Place “1”	in $19
+addi        $18 ,$0, 0
+addi        $19, $0, 1
 
 sll			$20, $11, 3			# Place “40” or “b100000” in $20 
 srl			$21, $11, 1			# Place “2” or “b010” in $21 
@@ -71,7 +73,13 @@ addi		$0,  $0,  0			# Place stall
 addi		$0,  $0,  0			# Place stall
 
 sllv		$23, $17, $16		# Place “2” or “b010” in $23
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
 srlv		$24, $21, $16		# Place “1” or "b001”  in $24
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
 srav		$25, $21, $19		# Place "1" or “b001”	in $25 
 
 bne  		$18, $19, part1		# Since branch is not equal from _ and _, it goes to part1
@@ -84,6 +92,7 @@ part2:
 addi		$0,  $0,  0			# Place stall
 
 j main 							# Jumps to main
+addi		$0,  $0,  0			# Place stall
 add 		$26, $0, 1			# need to atleast be doing something
 
 main:    						#assume value a is already in $t0, b in $t1
@@ -100,10 +109,15 @@ add 		$a0,$0,$t0   		# it's the same function as move the value
 add 		$a1,$0,$t1			# same function 
 
 jal 		addthem      		# call procedure
+addi		$0,  $0,  0			# Place stall
 
 add 		$t3,$0,$v0   		# move the return value from $v0 to where we want
 
 addi  		$2,  $0,  10      	# Place "10" in $v0 to signal an "exit" or "halt"
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
 syscall                 		# Actually cause the halt
 
 addthem:
@@ -139,4 +153,8 @@ addi		$0,  $0,  0			# Place stall
 
 
 addi  $2,  $0,  10              # Place "10" in $v0 to signal an "exit" or "halt"
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
 syscall                         # Actually cause the halt

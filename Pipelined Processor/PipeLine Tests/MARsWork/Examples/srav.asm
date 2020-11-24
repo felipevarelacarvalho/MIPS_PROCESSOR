@@ -9,10 +9,16 @@ addi $2, $0, 4
 addi $3, $0, 7
 addi $4, $0, 15
 
+addi $0, $0, 0
+addi $0, $0, 0
 srav $5, $2, $1
 srav $6, $3, $1
 srav $7, $4, $1
 
 
 addi  $2,  $0,  10      # Place "10" in $v0 to signal an "exit" or "halt"
+addi $0, $0, 0
+addi $0, $0, 0
+addi $0, $0, 0
+addi $0, $0, 0
 syscall                 # Actually cause the halt

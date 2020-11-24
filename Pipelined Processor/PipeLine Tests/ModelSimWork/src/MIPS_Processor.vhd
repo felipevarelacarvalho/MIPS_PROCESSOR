@@ -406,7 +406,7 @@ begin
   generic map(N => N)
   port map(
     Cin    => '0',
-    A     => s_NextInstAddr,
+    A     => s_IMemAddr, --s_InstAddr instead of this, so synthesis does not optimize away the design
     B     => x"00000004",
     Cout  => open,
     Sum   => s_PCPlusFourOut
@@ -619,7 +619,7 @@ begin
     i_MEMTOREG_EXMEM     => s_MemToReg_from_IDEX,
     i_MEMWR_EXMEM	       => s_DMemWr_from_IDEX,
     i_RegWr_EXMEM        => s_RegWr_from_IDEX,
-    i_PC_PLUS_4_EXMEM 	 => s_PCPlusFour_from_IFID,
+    i_PC_PLUS_4_EXMEM 	 => s_PCPlusFour_from_IDEX, --Changed due to error is Jal
     i_ALU_OUT_EXMEM      => s_ALUOut,
     i_READ_DATA2_EXMEM	 => s_RegFileReadAddress2Out_from_IDEX,
     i_WriteRegAddr_EXMEM => s_RegWrAddr_from_IDEX,
