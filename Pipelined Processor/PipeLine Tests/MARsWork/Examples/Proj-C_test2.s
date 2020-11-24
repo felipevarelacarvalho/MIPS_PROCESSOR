@@ -64,8 +64,16 @@ endline:.asciiz "\n"
 addi $s0, $0, 0	# set i = 0;
 addi $s1, $0, 0 # set j = 0;
 
-# Setting the address of arr[0]
-la $s2, inputArr 	# load address of inputArr into MIPS(this is addr. of arr[0])
+# Setting the address of arr[0], Pseudoinstructions must be removed to add stalls
+#la $s2, inputArr 	# load address of inputArr into MIPS(this is addr. of arr[0])
+
+lui $at, 0x00001001	#load base address into MIPS
+#stalls
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+addi		$0,  $0,  0			# Place stall
+ori $s2, $at, 0x00000028 #load in top index of array for length calculation
 
 # Calculate arr.length
 #	-This is dependent on the output array, which should match anyways
@@ -113,6 +121,7 @@ sub $s5, $s4, $s0 # this is arr.length-1-i
 	
 OuterForLoop:
 	addi		$0,  $0,  0			# Place stall
+
 	# for(i=0;i<length -1;i++){Inner Loop}
 	# so check bge i, length-1, BRANCH
 	# if this is false we should branch to the end of the program
@@ -128,6 +137,8 @@ OuterForLoop:
 	addi		$0,  $0,  0			# Place stall
 	
 	beq $at, $zero, Exit #if this fails in testing $t8 will = 1: WORKS
+
+	addi		$0,  $0,  0			# Place stall
 
 	addi $s1, $0, 0 # Set j=0 to prep for the Inner For Loop
 	
@@ -154,7 +165,9 @@ OuterForLoop:
 		addi		$0,  $0,  0			# Place stall
 		addi		$0,  $0,  0			# Place stall
 		
-		beq $at, $zero, ExitInnerLoop #if this fails in testing then $t8 will = 2: WORKS
+		beq $at, $zero, ExitInnerLoop #if this fails in testing then $t8 will = 2: WORK
+		
+		addi		$0,  $0,  0			# Place stall
 		
 		# If statement for swap:
 
@@ -186,6 +199,11 @@ OuterForLoop:
 		#loading in arr[j] and arr[j+1]:
 		lw $t0, 0($t3)	#store arr[j] as $t0
 		lw $t1, 4($t3)	#store arr[j+1] as $t1
+				
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
+		addi		$0,  $0,  0			# Place stall
 
 		#check if arr[j] > arr[j+1], this uses ble arr[j], arr[j+1], Swap
 		slt $at, $t1, $t0 # check if arr[j+1] < arr[j], if true no branch
@@ -196,6 +214,7 @@ OuterForLoop:
 		addi		$0,  $0,  0			# Place stall
 		
 		beq $at, $zero, Update #if this fails then $t8 will = 3: WORKS
+		addi		$0,  $0,  0			# Place stall
 		
 		#Swap: Swaps the elements $t0 and $t1 using a temp $
 		Swap:
@@ -214,19 +233,34 @@ OuterForLoop:
 			addi		$0,  $0,  0			# Place stall
 			#Store back into Memory
 			sw $t0, 0($t3) #Store arr[j] in Memory
+			
+			addi		$0,  $0,  0			# Place stall
+			addi		$0,  $0,  0			# Place stall
+			addi		$0,  $0,  0			# Place stall
+			addi		$0,  $0,  0			# Place stall
+			
 			sw $t1, 4($t3) #Store arr[j+1] in Memory
 			#Prep to make the Jump
 			addi $s1, $s1, 1 # j++
 			j InnerForLoop #Jump back into InnerLoop
-		
+			
+			addi $0, $0, 0 #Add Stall
+
 	#ExitInnerLoop: Preps to jump back into OuterForLoop
 	ExitInnerLoop:
 	addi		$0,  $0,  0			# Place stall
+
 	addi $s0, $s0, 1 # i++;
 	j OuterForLoop #Jump back into Outer Loop
+	
+	addi		$0,  $0,  0			# Place stall
 	
 #Exit: Ends the BubbleSort
 Exit:
 	addi		$0,  $0,  0			# Place stall
 	li $v0, 10
-   	syscall
+   	addi		$0,  $0,  0			# Place stall
+	addi		$0,  $0,  0			# Place stall
+	addi		$0,  $0,  0			# Place stall
+	addi		$0,  $0,  0			# Place stall
+	syscall
