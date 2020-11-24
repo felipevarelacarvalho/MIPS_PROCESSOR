@@ -272,6 +272,7 @@ architecture structure of MIPS_Processor is
   signal s_PCPlusFourOut                    : std_logic_vector(31 downto 0); --Output of PC+4
   signal s_PCPlusFour_from_IFID             : std_logic_vector(31 downto 0); --Output from IFID pipeline with PC+4 data
   signal s_Instruction_from_IFID            : std_logic_vector(31 downto 0); --Output from IFID pipeline with Instruction data
+  signal s_PCsrcMuxOut                      : std_logic_vector(31 downto 0); --Output from PCsrc Mux
       
   --ID stage signals      
   signal s_ShiftTwo_Input                   : std_logic_vector(31 downto 0); -- Input for shift left two of instruction that only get the 26 least signinficant bits
@@ -380,13 +381,22 @@ begin
     Q => s_JrMuxOut
   );
 
+  PCsrc_Mux : MUX21_structN
+  generic map(N => N)
+  port map(
+    A => s_JrMuxOut, 
+    B => s_PCPlusFourOut,
+    S => (s_J or s_Jr or s_BranchLogicOut),
+    Q => s_PCsrcMuxOut
+  );
+
   PC : PC_reg --Changed to PC_reg instead of register_Nbits (11/4/2020)
   generic map(N => N)
   port map(
     i_clk => iCLK,
     i_RST => iRST,
     i_WE  => '1',
-    i_D   => s_JrMuxOut,  
+    i_D   => s_PCsrcMuxOut,  
     o_Q   => s_NextInstAddr
   );
 
