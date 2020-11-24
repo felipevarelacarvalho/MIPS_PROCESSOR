@@ -653,7 +653,7 @@ begin
     i_RegWr_MEMWB        => s_RegWr_from_EXMEM,
     i_PC_PLUS_4_MEMWB 	 => s_PCPlusFour_from_EXMEM,
     i_MEM_READ_MEMWB	 => s_DMemOut,
-    i_ALU_OUT_MEMWB	     => s_ALUOut,
+    i_ALU_OUT_MEMWB	     => s_ALUOut_from_EXMEM,
     i_WriteRegAddr_MEMWB => s_RegWrAddr_from_EXMEM,
     -------------------------------------------- 
     o_JAL_MEMWB 		     => s_JAL_from_MEMWB,
