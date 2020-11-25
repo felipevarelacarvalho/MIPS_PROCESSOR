@@ -12,3 +12,26 @@
 # //  18 U.S.C. Section 1905.
 # //
 # temp/vsim.wlf opened as dataset "vsim"
+add wave -position insertpoint vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/*
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IFID/i_PCplusFOUR_IFID
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IFID/i_MEM_IFID
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IDEX/i_JAL_IDEX
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IDEX/i_MEMTOREG_IDEX
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IDEX/i_MEMWR_IDEX
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IDEX/i_ALUOP_IDEX
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IDEX/i_ALUSRC_IDEX
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IDEX/i_RegWr_IDEX
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IDEX/i_SIGN_EXT_IDEX
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IDEX/i_READ_DATA1_IDEX
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IDEX/i_READ_DATA2_IDEX
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IDEX/i_PC_PLUS_4_IDEX
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IDEX/i_Instruction_IDEX
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/IDEX/i_WriteRegAddr_IDEX
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/EXMEM/i_PC_PLUS_4_EXMEM
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/EXMEM/i_ALU_OUT_EXMEM
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/EXMEM/i_READ_DATA2_EXMEM
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/EXMEM/i_WriteRegAddr_EXMEM
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/MEMWB/i_PC_PLUS_4_MEMWB
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/MEMWB/i_MEM_READ_MEMWB
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/MEMWB/i_ALU_OUT_MEMWB
+add wave -position end  vsim:/tb_simplifiedmipsprocessor/MySimplifiedMIPSProcess/MEMWB/i_WriteRegAddr_MEMWB
